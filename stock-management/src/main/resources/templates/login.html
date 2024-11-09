@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/css/login.css" rel="stylesheet"/>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <title>Início</title>
+</head>
+<body>
+    <header>
+        <div class="container-fluid topo">
+            <div class="row">
+                    <div class="col-12">
+                        <div class="img-logo">
+                            <img id="logo" name="logo" src="../static/imagens/logo.png" alt="Logo da empresa"/>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-1">
+                    <div class="retanguloEsquerdo">
+                    <!--div criada para fazer um retangulo-->
+                    </div>
+                </div>
+                <div class="col-11">
+                    <div class="infoLogin">
+                        <h2 id="titulo">Login</h2>
+                        <div class="formulario">
+                            <form action="#">
+                                <div class="form-group">
+                                    <label for="login">Login:</label>
+                                    <input id="login" name="login" type="email" class="form-control" required/>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="senha">Senha:</label>
+                                    <input id="senha" name="senha" type="password" class="form-control" required/>
+                                </div>
+                                <div class="form-group">
+                                    <div class="infoBotao">
+                                        <input id="btnEnviar" name="btnEnviar" type="submit" class="btn btn-primary" value="Enviar">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container-fluid inferior">
+            <div class="row">
+                <div class="col-12">
+                    <p>© 2024 New West Company. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer> 
+</body>
+</html>
