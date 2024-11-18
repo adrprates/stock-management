@@ -131,7 +131,8 @@ body{
 }
 
 .inferior{
-    position: absolute;
+    margin-top: 88px;
+    position: relative;
     text-align: center;
     justify-items: center;
     color: white;
