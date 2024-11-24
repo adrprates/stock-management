@@ -68,13 +68,13 @@ body{
     width: 200px;
     background: #7A25E7;
     font-weight: bold;
-    border: groove #7A25E7;
+    border: 2px solid #7A25E7;
 }
 
 #btnEnviar:hover{
     background-color: white;
-    color: #2c2c2c;
-    border: groove #2c2c2c;
+    color: #7A25E7;
+    border: 2px solid #7A25E7;
 }
 
 .inferior{

@@ -130,7 +130,7 @@ body{
     }
 }
 
-#titulo_cadastro{
+#titulo_movimentacao, #nome_produto{
     color: white;
     font-weight: bold;
     margin-top: 50px;
@@ -160,7 +160,7 @@ body{
 }
 
 .inferior{
-    margin-top: 88px;
+    margin-top: 200px;
     position: relative;
     text-align: center;
     justify-items: center;
