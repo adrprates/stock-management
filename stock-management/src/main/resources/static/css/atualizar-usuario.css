@@ -150,17 +150,17 @@ body{
     height: auto;
     font-weight: bold;
     background: #7A25E7;
-    border: groove #7A25E7;
+    border: 2px solid #7A25E7;
 }
 
 #btnEnviar:hover{
     background-color: white;
     color: #7A25E7;
-    border: groove #7A25E7;
+    border: 2px solid #7A25E7;
 }
 
 .inferior{
-    margin-top: 286px;
+    margin-top: 288px;
     position: relative;
     text-align: center;
     justify-items: center;

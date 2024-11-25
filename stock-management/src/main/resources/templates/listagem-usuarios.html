@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/css/listagem-usuarios.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <title>Listagem de Usuários</title>
+</head>
+<body>
+    <header>
+        <div class="container-fluid topo">
+            <div class="row">
+                    <div class="col-12">
+                        <div class="img-logo">
+                            <img id="logo" name="logo" src="../static/imagens/logo.png" alt="Logo da empresa"/>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="container meio">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row g-2">
+                        <div class="col-6 nav_col">
+                            <div class="navbar">
+                                <div class="menu_itens">
+                                    <a href="#" id="produtos" alt="Produtos">
+                                        <img id="produto_icon" src="../static/imagens/produto.png" alt="Ícone de produtos"/>
+                                        <span class="descricao_item">Produtos</span>
+                                    </a>
+                                    <a href="#" id="categorias" alt="Categorias">
+                                        <img id="categoria_icon" src="../static/imagens/categoria.png" alt="Ícone de categorias"/>
+                                        <span class="descricao_item">Categorias</span>
+                                    </a>
+                                    <a href="#" id="usuarios" alt="Usuários">
+                                        <img id="usuarios_icon" src="../static/imagens/usuarios.png" alt="Ícone de usuários"/>
+                                        <span class="descricao_item">Usuários</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 nav_col">
+                            <div class="usuario">
+                                <img id="usuario_icon" src="../static/imagens/usuario.png" alt="Ícone de usuário"/><br>
+                                <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
+                                <span id="usuario_cargo" title="Cargo">Cargo</span>
+                            </div>
+                        </div>
+                        <div class="col-3 nav_col">
+                            <div class="sair">
+                                <a href="#" id="logout" alt="Logout">
+                                    <img id="logout" src="../static/imagens/logout.png" alt="Ícone de logout"/>
+                                    <span class="descricao_item">Logout</span>
+                                </a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="botoes">
+                        <a id="btnCadastrar" href="#">Novo</a>
+                    </div>
+                    <h1 id="titulo_listagem">Lista de Usuários</h1>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-dark text-white">
+                            <strong>ID: </strong> 1
+                        </li>
+                        <li class="list-group-item bg-dark text-white">
+                            <strong>Login: </strong> Usuário
+                        </li>
+                        <li class="list-group-item bg-dark text-white">
+                            <strong>Cargo: </strong> Cargo
+                    </ul>
+                    <div class="botoes">
+                        <a id="btnAtualizar" href="#">Atualizar</a>
+                        <a id="btnDeletar" href="#">Deletar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container-fluid inferior">
+            <div class="row">
+                <div class="col-12">
+                    <p>© 2024 New West Company. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

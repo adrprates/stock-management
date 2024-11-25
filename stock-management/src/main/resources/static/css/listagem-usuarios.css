@@ -130,40 +130,76 @@ body{
     }
 }
 
-#titulo_atualizar{
+#btnCadastrar{
+    margin-top: 30px;
+    border: 2px solid rgb(38, 175, 56);
+    background: rgb(38, 175, 56);
+}
+
+#btnCadastrar:hover{
+    border: 2px solid rgb(38, 175, 56);
+    background: white;
+    color: rgb(38, 175, 56);
+}
+
+#titulo_listagem{
     color: white;
     font-weight: bold;
     margin-top: 50px;
+    margin-bottom: 50px;
     text-align: center;
 }
 
-#formulario {
-    color: white;
+.botoes{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: line;
+    justify-content: center;
+    gap: 100px;
 }
 
-.form-group{
-    margin-top: 25px;
-}
-
-#btnEnviar{
-    width: 250px;
-    height: auto;
+.botoes > a{
     font-weight: bold;
-    background: #7A25E7;
-    border: 2px solid #7A25E7;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
 }
 
-#btnEnviar:hover{
-    background-color: white;
-    color: #7A25E7;
-    border: 2px solid #7A25E7;
+#btnAtualizar{
+    border: 2px solid rgb(0, 162, 255);
+    background: rgb(0, 162, 255);
+}
+
+#btnAtualizar:hover{
+    border: 2px solid rgb(0, 162, 255);
+    background: white;
+    color: rgb(0, 162, 255);
+}
+
+#btnDeletar{
+    border: 2px solid rgb(241, 50, 50);
+    background: rgb(241, 50, 50);
+}
+
+#btnDeletar:hover{
+    border: 2px solid rgb(241, 50, 50);
+    background: white;
+    color: rgb(241, 50, 50);
 }
 
 .inferior{
-    margin-top: 90px;
+    margin-top: 293px;
     position: relative;
     text-align: center;
     justify-items: center;
     color: white;
+    bottom: 0;
     background: #7A25E7;
 }
