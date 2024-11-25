@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/static/css/atualizar-produto.css" rel="stylesheet"/>
+    <link href="/static/css/cadastro-categoria.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <title>Atualizar Produto</title>
+    <title>Cadastrar Categoria</title>
 </head>
 <body>
     <header>
@@ -68,32 +68,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="infoAtualizar">
-                        <h1 id="titulo_atualizar">Atualizar Produto</h1>
+                    <div class="infoCadastro">
+                        <h1 id="titulo_cadastro">Cadastro de Categoria</h1>
                         <form action="#" id="formulario" method="POST">
                             <div class="form-group">
                                 <label for="nome">Nome: </label>
                                 <input id="nome" name="nome" type="text" class="form-control" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="categoria">Categoria: </label>
-                                <select id="categoria" name="categoria" class="form-control">
-                                    <option value="categoria1">Categoria 1</option>
-                                    <option value="categoria2">Categoria 2</option>
-                                    <option value="categoria3">Categoria 3</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="quantidade">Quantidade: </label>
-                                <input id="quantidade" name="quantidade" type="number" class="form-control" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="preco">Preço: </label>
-                                <input id="preco" name="preco" type="text" class="form-control" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="descricao">Descrição: </label>
-                                <textarea id="descricao" name="descricao" class="form-control" required></textarea>
                             </div>
                             <div class="form-group text-center">
                                 <input id="btnEnviar" name="btnEnviar" type="submit" class="btn btn-primary" value="Enviar"/>
@@ -113,6 +93,5 @@
             </div>
         </div>
     </footer>
-    
 </body>
 </html>

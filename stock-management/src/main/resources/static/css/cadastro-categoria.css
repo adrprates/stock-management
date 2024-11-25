@@ -1,0 +1,169 @@
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url("../fontes/Roboto-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto-Regular';
+}
+
+body{
+    background-color: #2c2c2c;
+    height: 100%;
+}
+
+.topo{
+    width: 100%;
+    height: 100px;
+    background: #7A25E7;
+}
+
+.img-logo{
+    align-items: center;
+    height: 100px;
+}
+
+#logo{
+    width: 140px;
+    margin-top: 4px;
+}
+
+.meio{
+    background-color: #1D1C19;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.nav_col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.menu_itens{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.menu_itens > a > img{
+    width: 25px;
+    height: 25px;
+}
+
+.menu_itens > a{
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.menu_itens :hover{
+    color: #7A25E7;
+}
+
+.usuario{
+    align-items: center;
+    text-align: center;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+.usuario > img{
+    width: 30px;
+    height: 30px;
+}
+
+#usuario_cargo{
+    color: green;
+}
+
+.sair > a{
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.sair :hover{
+    color: #7A25E7;
+}
+
+.sair > a > img{
+    width: 25px;
+    height: 25px;
+}
+
+@media(max-width: 800px){
+    .menu_itens{
+        gap: 20px;
+        align-items: left;
+    }
+
+    .sair > a > img, .menu_itens > a > img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .sair > a, .menu_itens > a{
+        font-size: 12px;
+    }
+
+    .usuario{
+        font-size: 12px;
+    }
+
+    .usuario > img{
+        width: 25px;
+        height: 25px;
+    }
+}
+
+#titulo_cadastro{
+    color: white;
+    font-weight: bold;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#formulario {
+    color: white;
+}
+
+.form-group{
+    margin-top: 25px;
+}
+
+#btnEnviar{
+    width: 250px;
+    height: auto;
+    font-weight: bold;
+    background: #7A25E7;
+    border: 2px solid #7A25E7;
+}
+
+#btnEnviar:hover{
+    background-color: white;
+    color: #7A25E7;
+    border: 2px solid #7A25E7;
+}
+
+.inferior{
+    margin-top: 462px;
+    position: relative;
+    text-align: center;
+    justify-items: center;
+    color: white;
+    background: #7A25E7;
+}
