@@ -130,12 +130,51 @@ body{
     }
 }
 
+#movimentacao_atual{
+    margin-bottom: 50px;
+}
+
+.table{
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid white;
+    overflow: hidden;
+}
+
+#movimentacao_atual, #titulo_movimentacao, #nome_produto{
+    color: white;
+    font-weight: bold;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#formulario {
+    color: white;
+}
+
+.form-group{
+    margin-top: 25px;
+}
+
+#btnEnviar{
+    width: 250px;
+    height: auto;
+    font-weight: bold;
+    background: #7A25E7;
+    border: 2px solid #7A25E7;
+}
+
+#btnEnviar:hover{
+    background-color: white;
+    color: #7A25E7;
+    border: 2px solid #7A25E7;
+}
+
 .inferior{
-    margin-top: 88px;
+    margin-top: 113px;
     position: relative;
     text-align: center;
     justify-items: center;
     color: white;
-    bottom: 0;
     background: #7A25E7;
 }
