@@ -150,6 +150,27 @@ body{
     text-align: center;
 }
 
+#formulario{
+    color: white;
+    font-size: bold;
+    margin-bottom: 50px;
+}
+
+#btnEnviar{
+    font-weight: bold;
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid #a30a57;
+    background: #a30a57;
+}
+
+#btnEnviar:hover{
+    border: 2px solid #a30a57;
+    background: white;
+    color: #a30a57;
+}
+
 .botoes{
     margin-top: 20px;
     display: flex;
