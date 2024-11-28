@@ -181,17 +181,6 @@ body{
     border-radius: 8px;
 }
 
-#btnMovimentacao{
-    border: 2px solid #7A25E7;
-    background: #7A25E7;
-}
-
-#btnMovimentacao:hover{
-    border: 2px solid #7A25E7;
-    background: white;
-    color: #7A25E7;
-}
-
 #btnAtualizar{
     border: 2px solid rgb(0, 162, 255);
     background: rgb(0, 162, 255);
