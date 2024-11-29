@@ -26,7 +26,7 @@ public class CategoriaService {
         return categoriaRepository.findById(id).orElseThrow();
     }
     
-    public List<Categoria> buscarTodos(){
+    public List<Categoria> buscarTodas(){
         return categoriaRepository.findAll();
     }
     
