@@ -31,7 +31,7 @@ public class CategoriaService {
     }
     
     public List<Categoria> buscarPorNome(String nome){
-        return categoriaRepository.findByNameContaining(nome);
+        return categoriaRepository.findByNomeContaining(nome);
     }
     
     public Categoria atualizar(Integer id, Categoria categoria){

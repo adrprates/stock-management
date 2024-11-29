@@ -3,6 +3,7 @@ package com.sm.stock_management.controller;
 import com.sm.stock_management.model.Categoria;
 import com.sm.stock_management.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author Adriano
  */
+@Controller
 public class CategoriaController {
 
     @Autowired
@@ -45,7 +47,7 @@ public class CategoriaController {
     @GetMapping("/listagem-categorias")
     public String listar(Model model) {
         model.addAttribute("listaCategorias", categoriaService.buscarTodas());
-        return "lista-filmes";
+        return "listagem-categorias";
     }
 
     //metodo para atualiar categoria
@@ -53,7 +55,7 @@ public class CategoriaController {
     public String atualizar(Model model) {
         model.addAttribute("categorias", categoriaService.buscarTodas());
         model.addAttribute("categoria", new Categoria());
-        return "atualizar-filme";
+        return "atualizar-categoria";
     }
     
     //metodo de selecionar categoria por id
@@ -71,7 +73,7 @@ public class CategoriaController {
     }
     
     //metodo para deletar categoria
-    @PostMapping("/deletar-filme")
+    @PostMapping("/deletar-categoria")
     public String deletar(Model model, @RequestParam("id") Integer id){
         Categoria categoriaSelecionada = categoriaService.buscarPorId(id);
         if(categoriaSelecionada!= null){

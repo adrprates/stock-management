@@ -14,7 +14,7 @@
             <div class="row">
                     <div class="col-12">
                         <div class="img-logo">
-                            <img id="logo" name="logo" src="../static/imagens/logo.png" alt="Logo da empresa"/>
+                            <img id="logo" name="logo" src="/static/imagens/logo.png" alt="Logo da empresa"/>
                         </div>
                     </div>
             </div>
@@ -29,15 +29,15 @@
                             <div class="navbar">
                                 <div class="menu_itens">
                                     <a href="#" id="produtos" alt="Produtos">
-                                        <img id="produto_icon" src="../static/imagens/produto.png" alt="Ícone de produtos"/>
+                                        <img id="produto_icon" src="/static/imagens/produto.png" alt="Ícone de produtos"/>
                                         <span class="descricao_item">Produtos</span>
                                     </a>
                                     <a href="#" id="categorias" alt="Categorias">
-                                        <img id="categoria_icon" src="../static/imagens/categoria.png" alt="Ícone de categorias"/>
+                                        <img id="categoria_icon" src="/static/imagens/categoria.png" alt="Ícone de categorias"/>
                                         <span class="descricao_item">Categorias</span>
                                     </a>
                                     <a href="#" id="usuarios" alt="Usuários">
-                                        <img id="usuarios_icon" src="../static/imagens/usuarios.png" alt="Ícone de usuários"/>
+                                        <img id="usuarios_icon" src="/static/imagens/usuarios.png" alt="Ícone de usuários"/>
                                         <span class="descricao_item">Usuários</span>
                                     </a>
                                 </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-3 nav_col">
                             <div class="usuario">
-                                <img id="usuario_icon" src="../static/imagens/usuario.png" alt="Ícone de usuário"/><br>
+                                <img id="usuario_icon" src="/static/imagens/usuario.png" alt="Ícone de usuário"/><br>
                                 <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
                                 <span id="usuario_cargo" title="Cargo">Cargo</span>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="col-3 nav_col">
                             <div class="sair">
                                 <a href="#" id="logout" alt="Logout">
-                                    <img id="logout" src="../static/imagens/logout.png" alt="Ícone de logout"/>
+                                    <img id="logout" src="/static/imagens/logout.png" alt="Ícone de logout"/>
                                     <span class="descricao_item">Logout</span>
                                 </a>
                             </div>
@@ -90,10 +90,10 @@
                                     <strong>Nome: </strong> <span th:text="${categoria.nome}"></span>
                                 </li>
                             </ul>
-                            <div class="botoes">
+                            <!-- <div class="botoes">
                                 <a id="btnAtualizar" th:href="@{/categoria/atualizar/{id}(id=${categoria.id})}">Atualizar</a>
                                 <a id="btnDeletar" th:href="@{/categoria/deletar/{id}(id=${categoria.id})}">Deletar</a>
-                            </div>
+                            </div> -->
                         </li>
                     </ul>
                 </div>
