@@ -82,17 +82,21 @@
                         </div>
                     </form>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>ID: </strong> 1
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Nome: </strong> Categoria
+                        <li class="list-group-item bg-dark text-white" th:each="categoria : ${categorias}">
+                            <ul>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>ID: </strong> <span th:text="${categoria.id}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Nome: </strong> <span th:text="${categoria.nome}"></span>
+                                </li>
+                            </ul>
+                            <div class="botoes">
+                                <a id="btnAtualizar" th:href="@{/categoria/atualizar/{id}(id=${categoria.id})}">Atualizar</a>
+                                <a id="btnDeletar" th:href="@{/categoria/deletar/{id}(id=${categoria.id})}">Deletar</a>
+                            </div>
                         </li>
                     </ul>
-                    <div class="botoes">
-                        <a id="btnAtualizar" href="#">Atualizar</a>
-                        <a id="btnDeletar" href="#">Deletar</a>
-                    </div>
                 </div>
             </div>
         </div>
