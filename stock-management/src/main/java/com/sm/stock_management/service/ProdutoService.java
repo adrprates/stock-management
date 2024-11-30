@@ -27,7 +27,7 @@ public class ProdutoService {
         return produtoRepository.findById(id).orElseThrow();
     }
     
-    public List<Produto> buscarTodas(){
+    public List<Produto> buscarTodos(){
         return produtoRepository.findAll();
     }
     
