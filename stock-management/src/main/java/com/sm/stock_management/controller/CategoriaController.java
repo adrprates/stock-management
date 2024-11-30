@@ -46,11 +46,15 @@ public class CategoriaController {
 
     //metodo para carregar todas as categorias na pagina de listar as categorias
     @GetMapping("/listagem-categorias")
-    public String listar(Model model) {
-        model.addAttribute("categorias", categoriaService.buscarTodas());
+    public String listar(@RequestParam(required = false) String nome, Model model) {
+        if (nome == null || nome.isBlank()) {
+            model.addAttribute("categorias", categoriaService.buscarTodas());
+        } else {
+            model.addAttribute("categorias", categoriaService.buscarPorNome(nome));
+        }
         return "listagem-categorias";
     }
-
+    
     //metodo para carregar dados na pagina de atualizar categoria
     @GetMapping("/atualizar-categoria/{id}")
     public String atualizar(@PathVariable Integer id, Model model) {
