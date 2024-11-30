@@ -63,17 +63,13 @@ public class CategoriaController {
 }
     
     //metodo para deletar categoria
-    @PostMapping("/deletar-categoria")
-    public String deletar(Model model, @RequestParam("id") Integer id){
-        Categoria categoriaSelecionada = categoriaService.buscarPorId(id);
-        if(categoriaSelecionada!= null){
-            categoriaService.excluir(id);
-        } else {
-            model.addAttribute("mensagem", "Categoria não encontrado.");
-            model.addAttribute("categoria", new Categoria()); 
-        }
-        
-        model.addAttribute("categorias", categoriaService.buscarTodas());
+    @PostMapping("/deletar-categoria/{id}")
+    public String deletar(@PathVariable Integer id, Model model){
+        Categoria categoria = categoriaService.buscarPorId(id);
+        if(categoria == null){
+            return "redirect:/listagem-categorias"; 
+        } 
+        categoriaService.excluir(id);
         return "redirect:/listagem-categorias";   
     }
 }
