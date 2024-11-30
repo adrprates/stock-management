@@ -52,7 +52,7 @@ public class ProdutoController {
             model.addAttribute("mensagem", "Produto cadastrado com sucesso!");
         }
         model.addAttribute("produto", new Produto());
-        return "redirect:/listagem-categorias";
+        return "redirect:/listagem-produtos";
     }
 
     //metodo para carregar todos os produtos na pagina de listar os produtos
