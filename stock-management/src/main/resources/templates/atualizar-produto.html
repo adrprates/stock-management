@@ -74,7 +74,7 @@
 
                             <div class="form-group">
                                 <label for="nome">Nome: </label>
-                                <input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" required/>
+                                <input id="nome" name="nome" type="text" class="form-control" th:field="${produto.nome}" required/>
                             </div>
                             <div class="form-group">
                                 <label for="categoria">Categoria: </label>
@@ -84,15 +84,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="quantidade">Quantidade: </label>
-                                <input id="quantidade" name="quantidade" type="number" class="form-control" th:field="*{quantidade}"  required/>
+                                <input id="quantidade" name="quantidade" type="number" class="form-control" th:field="${produto.quantidade}"  required/>
                             </div>
                             <div class="form-group">
                                 <label for="preco">Preço: </label>
-                                <input id="preco" name="preco" type="text" class="form-control" th:field="*{preco}"  required/>
+                                <input id="preco" name="preco" type="text" class="form-control" th:field="${produto.preco}"  required/>
                             </div>
                             <div class="form-group">
                                 <label for="descricao">Descrição: </label>
-                                <textarea id="descricao" name="descricao" class="form-control" th:field="*{descricao}"  required></textarea>
+                                <textarea id="descricao" name="descricao" class="form-control" th:field="${produto.descricao}" required></textarea>
                             </div>
                             <div class="form-group text-center">
                                 <input id="btnEnviar" name="btnEnviar" type="submit" class="btn btn-primary" value="Enviar"/>
