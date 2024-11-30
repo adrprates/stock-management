@@ -90,7 +90,7 @@
                                     <strong>Nome: </strong> <span th:text="${produto.nome}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
-                                    <strong>Categoria: </strong> <span th:text="${produto.categoria}"></span>
+                                    <strong>Categoria: </strong> <span th:text="${produto.categoria.id} + ' - ' + ${produto.categoria.nome}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <strong>Quantidade: </strong> <span th:text="${produto.quantidade}"></span>
