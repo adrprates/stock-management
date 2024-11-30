@@ -105,7 +105,8 @@
                             <div class="botoes">
                                 <a id="btnMovimentacao" th:href="@{/movimentacao-produto/{id}(id=${produto.id})}">Movimentação</a>
                                 <a id="btnAtualizar" th:href="@{/atualizar-produto/{id}(id=${produto.id})}">Atualizar</a>
-                                <a id="btnDeletar" th:href="@{/deletar-produto/{id}(id=${produto.id})}">Deletar</a>
+                                <a id="btnDeletar" th:href="@{/deletar-produto/{id}(id=${produto.id})}" class="btn btn-danger" 
+                                onclick="return confirm('Deseja realmente excluir este produto?');">Deletar</a>
                             </div>
                         </li>
                     </ul>
