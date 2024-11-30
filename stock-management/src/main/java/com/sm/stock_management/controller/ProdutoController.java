@@ -69,13 +69,15 @@ public class ProdutoController {
     //metodo para carregar dados na pagina de atualizar produto
     @GetMapping("/atualizar-produto/{id}")
     public String atualizar(@PathVariable Integer id, Model model) {
-    Produto produto = produtoService.buscarPorId(id);
-    if (produto == null) {
-        return "redirect:/listagem-produtos";
+        Produto produto = produtoService.buscarPorId(id);
+        if (produto == null) {
+            return "redirect:/listagem-produtos";
+        }
+        List<Categoria> categorias = categoriaService.buscarTodas();
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("produto", produto);
+        return "atualizar-produto";
     }
-    model.addAttribute("produto", produto);
-    return "atualizar-produto";
-}
     
     //metodo para deletar produto
     @GetMapping("/deletar-produto/{id}")

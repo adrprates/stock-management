@@ -39,6 +39,10 @@ public class ProdutoService {
         Produto produtoEncontrado = buscarPorId(id);
         
         produtoEncontrado.setNome(produto.getNome());
+        produtoEncontrado.setCategoria(produto.getCategoria());
+        produtoEncontrado.setQuantidade(produto.getQuantidade());
+        produtoEncontrado.setPreco(produto.getPreco());
+        produtoEncontrado.setDescricao(produto.getDescricao());
         
         produtoRepository.save(produtoEncontrado);
         return  produtoEncontrado;
