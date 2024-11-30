@@ -171,8 +171,13 @@ body{
     color: #a30a57;
 }
 
+ul{
+    margin-top: 20px;
+}
+
 .botoes{
     margin-top: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: line;
     justify-content: center;
