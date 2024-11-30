@@ -86,7 +86,7 @@ public class ProdutoController {
         if(produto == null){
             return "redirect:/listagem-produtos"; 
         } 
-        categoriaService.excluir(id);
+        produtoService.excluir(id);
         return "redirect:/listagem-produtos";   
     }
 }
