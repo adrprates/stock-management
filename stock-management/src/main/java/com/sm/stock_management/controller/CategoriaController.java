@@ -21,10 +21,10 @@ public class CategoriaController {
     CategoriaService categoriaService;
 
     //metodo para cadastrar categoria
-    @GetMapping("/cadastrar-categoria")
+    @GetMapping("/cadastro-categoria")
     public String cadastrar(Model model) {
         model.addAttribute("categoria", new Categoria());
-        return "cadastrar-categoria";
+        return "cadastro-categoria";
     }
 
     //metodo para salvar a categoria na listagem de categorias
@@ -46,7 +46,7 @@ public class CategoriaController {
     //metodo para listar as categorias
     @GetMapping("/listagem-categorias")
     public String listar(Model model) {
-        model.addAttribute("listaCategorias", categoriaService.buscarTodas());
+        model.addAttribute("categorias", categoriaService.buscarTodas());
         return "listagem-categorias";
     }
 
