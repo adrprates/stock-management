@@ -92,7 +92,8 @@
                             </ul>
                             <div class="botoes">
                                 <a id="btnAtualizar" th:href="@{/atualizar-categoria/{id}(id=${categoria.id})}">Atualizar</a>
-                                <a id="btnDeletar" th:href="@{/deletar-categoria/{id}(id=${categoria.id})}">Deletar</a>
+                                <a id="btnDeletar" th:href="@{/deletar-categoria/{id}(id=${categoria.id})}" class="btn btn-danger" 
+                                onclick="return confirm('Deseja realmente excluir esta categoria?');">Deletar</a>
                             </div>
                         </li>
                     </ul>
