@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -51,26 +52,15 @@ public class CategoriaController {
     }
 
     //metodo para atualiar categoria
-    @GetMapping("/atualizar-categoria")
-    public String atualizar(Model model) {
-        model.addAttribute("categorias", categoriaService.buscarTodas());
-        model.addAttribute("categoria", new Categoria());
-        return "atualizar-categoria";
+    @GetMapping("/atualizar-categoria/{id}")
+    public String atualizar(@PathVariable Integer id, Model model) {
+    Categoria categoria = categoriaService.buscarPorId(id);
+    if (categoria == null) {
+        return "redirect:/listagem-categorias";
     }
-    
-    //metodo de selecionar categoria por id
-    @PostMapping("/dados-categoria")
-    public String selecionar(@RequestParam("id") Integer id, Model model) {
-        Categoria categoriaSelecionada = categoriaService.buscarPorId(id);
-        if (categoriaSelecionada != null) {
-            model.addAttribute("categoria", categoriaSelecionada); 
-        } else {
-            model.addAttribute("mensagem", "Categoria não encontrado.");
-            model.addAttribute("categoria", new Categoria()); 
-        }
-        model.addAttribute("categorias", categoriaService.buscarTodas());
-        return "atualizar-categoria";
-    }
+    model.addAttribute("categoria", categoria);
+    return "atualizar-categoria";
+}
     
     //metodo para deletar categoria
     @PostMapping("/deletar-categoria")
