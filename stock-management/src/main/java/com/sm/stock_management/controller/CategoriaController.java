@@ -21,7 +21,7 @@ public class CategoriaController {
     @Autowired
     CategoriaService categoriaService;
 
-    //metodo para cadastrar categoria
+    //metodo para carregar a pagina de cadastrar categoria
     @GetMapping("/cadastro-categoria")
     public String cadastrar(Model model) {
         model.addAttribute("categoria", new Categoria());
@@ -44,14 +44,14 @@ public class CategoriaController {
         return "redirect:/listagem-categorias";
     }
 
-    //metodo para listar as categorias
+    //metodo para carregar todas as categorias na pagina de listar as categorias
     @GetMapping("/listagem-categorias")
     public String listar(Model model) {
         model.addAttribute("categorias", categoriaService.buscarTodas());
         return "listagem-categorias";
     }
 
-    //metodo para atualiar categoria
+    //metodo para carregar dados na pagina de atualizar categoria
     @GetMapping("/atualizar-categoria/{id}")
     public String atualizar(@PathVariable Integer id, Model model) {
     Categoria categoria = categoriaService.buscarPorId(id);
@@ -63,8 +63,8 @@ public class CategoriaController {
 }
     
     //metodo para deletar categoria
-    @PostMapping("/deletar-categoria/{id}")
-    public String deletar(@PathVariable Integer id, Model model){
+    @GetMapping("/deletar-categoria/{id}")
+    public String deletar(@PathVariable Integer id){
         Categoria categoria = categoriaService.buscarPorId(id);
         if(categoria == null){
             return "redirect:/listagem-categorias"; 
