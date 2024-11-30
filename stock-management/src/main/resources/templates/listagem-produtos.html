@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/static/css/listagem-produtos.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/listagem-produtos.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <title>Listagem de Produtos</title>
 </head>
 <body>
@@ -16,7 +14,7 @@
             <div class="row">
                     <div class="col-12">
                         <div class="img-logo">
-                            <img id="logo" name="logo" src="../static/imagens/logo.png" alt="Logo da empresa"/>
+                            <img id="logo" name="logo" src="/imagens/logo.png" alt="Logo da empresa"/>
                         </div>
                     </div>
             </div>
@@ -30,16 +28,16 @@
                         <div class="col-6 nav_col">
                             <div class="navbar">
                                 <div class="menu_itens">
-                                    <a href="listagem-produtos.html" id="produtos" alt="Produtos">
-                                        <img id="produto_icon" src="../static/imagens/produto.png" alt="Ícone de produtos"/>
+                                    <a href="@{/listagem-produtos}" id="produtos" alt="Produtos">
+                                        <img id="produto_icon" src="/imagens/produto.png" alt="Ícone de produtos"/>
                                         <span class="descricao_item">Produtos</span>
                                     </a>
-                                    <a href="#" id="categorias" alt="Categorias">
-                                        <img id="categoria_icon" src="../static/imagens/categoria.png" alt="Ícone de categorias"/>
+                                    <a href="@{/listagem-categorias}" id="categorias" alt="Categorias">
+                                        <img id="categoria_icon" src="/imagens/categoria.png" alt="Ícone de categorias"/>
                                         <span class="descricao_item">Categorias</span>
                                     </a>
-                                    <a href="#" id="usuarios" alt="Usuários">
-                                        <img id="usuarios_icon" src="../static/imagens/usuarios.png" alt="Ícone de usuários"/>
+                                    <a href="@{/listagem-usuarios}" id="usuarios" alt="Usuários">
+                                        <img id="usuarios_icon" src="/imagens/usuarios.png" alt="Ícone de usuários"/>
                                         <span class="descricao_item">Usuários</span>
                                     </a>
                                 </div>
@@ -47,7 +45,7 @@
                         </div>
                         <div class="col-3 nav_col">
                             <div class="usuario">
-                                <img id="usuario_icon" src="../static/imagens/usuario.png" alt="Ícone de usuário"/><br>
+                                <img id="usuario_icon" th:src="@{/imagens/usuario.png}" alt="Ícone de usuário"/><br>
                                 <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
                                 <span id="usuario_cargo" title="Cargo">Cargo</span>
                             </div>
@@ -55,7 +53,7 @@
                         <div class="col-3 nav_col">
                             <div class="sair">
                                 <a href="#" id="logout" alt="Logout">
-                                    <img id="logout" src="../static/imagens/logout.png" alt="Ícone de logout"/>
+                                    <img id="logout" th:src="@{/imagens/logout.png}" alt="Ícone de logout"/>
                                     <span class="descricao_item">Logout</span>
                                 </a>
                             </div>
@@ -70,53 +68,47 @@
             <div class="row">
                 <div class="col-12">
                     <div class="botoes">
-                        <a id="btnCadastrar" href="cadastro-produto.html">Novo</a>
+                        <a id="btnCadastrar" href="cadastro-produto">Novo</a>
                     </div>
                     <h1 id="titulo_listagem">Lista de Produtos</h1>
-                    <form id="formulario" method="POST" onsubmit="filtrarProdutos(event)">
+                    <form id="formulario" action="listagem-produtos" method="GET">
                         <div class="form-group">
-                            <label for="nomePesquisa">Pesquisar por nome: </label>
-                            <input id="nomePesquisa" name= "nomePesquisa" type="text" class="form-control"/>
+                            <label for="nome">Pesquisar por nome: </label>
+                            <input id="nome" name= "nome" type="text" class="form-control"/>
                         </div>
                         <div class="form-group botoes">
                             <input id="btnEnviar" name="btnEnviar" type="submit" class="btn btn-primary" value="Pesquisar">
                         </div>
                     </form>
-                    <div id="info">
-                        <script src="../static/js/listagem-produtos.js"></script>
-                        <script>$(document).ready(function (){
-                            listagemProdutos();
-                        });
-                        </script>
-                    </div>
-                    <!-- <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>ID: </strong> 1
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Nome: </strong> Produto
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Categoria: </strong> Categoria
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Quantidade: </strong> 10
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Preço: </strong> 2,50
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Descrição: </strong> Descrição do produto
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Data de criação: </strong> 24/11/2024
+                    <ul class="list-group">
+                        <li class="list-group-item bg-dark text-white" th:each="produto : ${produtos}">
+                            <ul>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>ID: </strong> <span th:text="${produto.id}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Nome: </strong> <span th:text="${produto.nome}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Categoria: </strong> <span th:text="${produto.categoria}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Quantidade: </strong> <span th:text="${produto.quantidade}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Preço: </strong> <span th:text="${produto.preco}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Descrição: </strong> <span th:text="${produto.descricao}"></span>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     <div class="botoes">
-                        <a id="btnMovimentacao" href="#">Movimentação</a>
-                        <a id="btnAtualizar" href="#">Atualizar</a>
-                        <a id="btnDeletar" href="#">Deletar</a>
-                    </div> -->
+                        <a id="btnMovimentacao" th:href="@{/movimentacao-produto/{id}(id=${produto.id})}">Movimentação</a>
+                        <a id="btnAtualizar" th:href="@{/atualizar-produto/{id}(id=${produto.id})}">Atualizar</a>
+                        <a id="btnDeletar" th:href="@{/deletar-produto/{id}(id=${produto.id})}">Deletar</a>
+                    </div>
                 </div>
             </div>
         </div>
