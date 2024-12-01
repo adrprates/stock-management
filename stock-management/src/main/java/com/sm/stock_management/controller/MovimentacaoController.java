@@ -35,6 +35,7 @@ public class MovimentacaoController {
         if (produto == null) {
             return "redirect:/listagem-produtos";
         }
+        model.addAttribute("produto", new Produto());
         model.addAttribute("movimentacao", new Movimentacao());
         return "movimentacao-produto";
     }
@@ -63,6 +64,10 @@ public class MovimentacaoController {
     @GetMapping("/listagem-movimentacao-produto/{id}")
     public String listar(@RequestParam(required = false) Date data, @PathVariable Integer id, Model model) {
         Produto produto = produtoService.buscarPorId(id);
+        if (produto == null) {
+            return "redirect:/listagem-produtos";
+        }
+        model.addAttribute("produto", produto);
         if (data == null) {
             model.addAttribute("movimentacoes", movimentacaoService.buscarTodas(produto));
         } else {
