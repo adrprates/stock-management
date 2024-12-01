@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/static/css/movimentacao-produto.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/movimentacao-produto.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <title>Movimentação de Produto</title>
 </head>
 <body>
@@ -15,7 +14,7 @@
             <div class="row">
                     <div class="col-12">
                         <div class="img-logo">
-                            <img id="logo" name="logo" src="../static/imagens/logo.png" alt="Logo da empresa"/>
+                            <img id="logo" name="logo" src="/imagens/logo.png" alt="Logo da empresa"/>
                         </div>
                     </div>
             </div>
@@ -29,16 +28,16 @@
                         <div class="col-6 nav_col">
                             <div class="navbar">
                                 <div class="menu_itens">
-                                    <a href="#" id="produtos" alt="Produtos">
-                                        <img id="produto_icon" src="../static/imagens/produto.png" alt="Ícone de produtos"/>
+                                    <a th:href="@{/listagem-produtos}" id="produtos" alt="Produtos">
+                                        <img id="produto_icon" src="/imagens/produto.png" alt="Ícone de produtos"/>
                                         <span class="descricao_item">Produtos</span>
                                     </a>
-                                    <a href="#" id="categorias" alt="Categorias">
-                                        <img id="categoria_icon" src="../static/imagens/categoria.png" alt="Ícone de categorias"/>
+                                    <a th:href="@{/listagem-categorias}" id="categorias" alt="Categorias">
+                                        <img id="categoria_icon" src="/imagens/categoria.png" alt="Ícone de categorias"/>
                                         <span class="descricao_item">Categorias</span>
                                     </a>
-                                    <a href="#" id="usuarios" alt="Usuários">
-                                        <img id="usuarios_icon" src="../static/imagens/usuarios.png" alt="Ícone de usuários"/>
+                                    <a th:href="@{/listagem-usuarios}" id="usuarios" alt="Usuários">
+                                        <img id="usuarios_icon" src="/imagens/usuarios.png" alt="Ícone de usuários"/>
                                         <span class="descricao_item">Usuários</span>
                                     </a>
                                 </div>
@@ -46,7 +45,7 @@
                         </div>
                         <div class="col-3 nav_col">
                             <div class="usuario">
-                                <img id="usuario_icon" src="../static/imagens/usuario.png" alt="Ícone de usuário"/><br>
+                                <img id="usuario_icon" src="/imagens/usuario.png" alt="Ícone de usuário"/><br>
                                 <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
                                 <span id="usuario_cargo" title="Cargo">Cargo</span>
                             </div>
@@ -54,7 +53,7 @@
                         <div class="col-3 nav_col">
                             <div class="sair">
                                 <a href="#" id="logout" alt="Logout">
-                                    <img id="logout" src="../static/imagens/logout.png" alt="Ícone de logout"/>
+                                    <img id="logout" src="/imagens/logout.png" alt="Ícone de logout"/>
                                     <span class="descricao_item">Logout</span>
                                 </a>
                             </div>
@@ -68,27 +67,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <h1 id="nome_produto" name="produto" th:text="${produto.nome}"></h1>
                     <h1 id="titulo_movimentacao">Movimentação</h1>
-                    <h2 id="nome_produto">Nome produto</h2>
-                    <form action="#" id="formulario" method="POST">
+                    <form th:action="@{/salvar-movimentacao}" id="formulario" method="POST" th:object="${movimentacao}">
+                        <input type="hidden" th:name="produto.id" th:value="${produto.id}" />
+                    
                         <div class="form-group">
                             <label for="tipo">Tipo: </label>
-                            <select name="tipo" id="tipo" class="form-control" required>
-                                <option value="inclusao">Inclusão</option>
-                                <option value="retirada">Retirada</option>
+                            <select name="tipo" id="tipo" class="form-control" th:field="${movimentacao.tipo}" required>
+                                <option value="Inclusão">Inclusão</option>
+                                <option value="Retirada">Retirada</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="quantidade">Quantidade: </label>
-                            <input id="quantidade" name="quantidade" type="number" class="form-control" required/>
+                            <input id="quantidade" name="quantidade" type="number" class="form-control" th:field="${movimentacao.quantidade}" required/>
                         </div>
                         <div class="form-group">
-                            <label for="data_movimentacao">Data</label>
-                            <input id="data_movimentacao" name="data_movimentacao" type="date" class="form-control" required>
+                            <label for="data">Data</label>
+                            <input id="data" name="data" type="date" class="form-control" th:field="${movimentacao.data}" required>
                         </div>
                         <div class="form-group">
-                            <label for="horario_movimentacao">Horário</label>
-                            <input id="horario_movimentacao" name="horario_movimentacao" type="time" class="form-control" required>
+                            <label for="hora">Horário</label>
+                            <input id="hora" name="hora" type="time" class="form-control" th:field="${movimentacao.hora}" required>
                         </div>
                         <div class="form-group text-center">
                             <input id="btnEnviar" name="btnEnviar" type="submit" class="btn btn-primary" value="Enviar"/>

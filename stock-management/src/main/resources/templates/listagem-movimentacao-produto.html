@@ -68,6 +68,9 @@
             <div class="row">
                 <div class="col-12">
                     <h1 id="nome_produto" name="produto" th:text="${produto.nome}"></h1>
+                    <div class="botoes">
+                        <a id="btnCadastrar" th:href="@{/movimentacao-produto/{id}(id=${produto.id})}">Nova</a>
+                    </div>
                     <h1 id="titulo_listagem">Lista de Movimentações</h1>
                     <form id="formulario" action="listagem-movimentacao-produto" method="GET">
                         <div class="form-group">
@@ -88,7 +91,7 @@
                                     <strong>Produto: </strong> <span th:text="${movimentacao.produto.id} + ' - ' + ${movimentacao.produto.nome}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
-                                    <strong>Quantidade: </strong> <span th:text="${produto.categoria.id} + ' - ' + ${produto.categoria.nome}"></span>
+                                    <strong>Quantidade: </strong> <span th:text="${movimentacao.quantidade}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <strong>Tipo: </strong> <span th:text="${movimentacao.tipo}"></span>
