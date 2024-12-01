@@ -97,10 +97,11 @@ public class MovimentacaoController {
     @GetMapping("/deletar-movimentacao/{id}")
     public String deletar(@PathVariable Integer id){
         Movimentacao movimentacao = movimentacaoService.buscarPorId(id);
+        int produtoId = movimentacao.getProduto().getId();
         if(movimentacao == null){
-            return "redirect:/listagem-movimentacao-produto"; 
+            return "redirect:/listagem-movimentacao-produto/" + produtoId; 
         } 
         movimentacaoService.excluir(id);
-        return "redirect:/listagem-movimentacao-produto";   
+        return "redirect:/listagem-movimentacao-produto/" + produtoId;   
     }
 }
