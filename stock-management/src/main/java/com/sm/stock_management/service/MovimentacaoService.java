@@ -1,6 +1,7 @@
 package com.sm.stock_management.service;
 
 import com.sm.stock_management.model.Movimentacao;
+import com.sm.stock_management.model.Produto;
 import com.sm.stock_management.repository.MovimentacaoRepository;
 import java.util.Date;
 import java.util.List;
@@ -28,12 +29,12 @@ public class MovimentacaoService {
         return movimentacaoRepository.findById(id).orElseThrow();
     }
     
-    public List<Movimentacao> buscarTodas(){
-        return movimentacaoRepository.findAll();
+    public List<Movimentacao> buscarTodas(Produto produto){
+        return movimentacaoRepository.findByProduto(produto);
     }
     
-    public List<Movimentacao> buscarPorData(Date data){
-        return movimentacaoRepository.findByData(data);
+    public List<Movimentacao> buscarPorData(Date data, Produto produto){
+        return movimentacaoRepository.findByDataAndProduto(data, produto);
     }
     
     public Movimentacao atualizar(Integer id, Movimentacao movimentacao){
