@@ -97,7 +97,7 @@
                                     <strong>Tipo: </strong> <span th:text="${movimentacao.tipo}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
-                                    <strong>Data: </strong> <span th:text="${movimentacao.data}"></span>
+                                    <strong>Data: </strong> <span th:text="${#dates.format(movimentacao.data, 'dd/MM/yyyy')}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <strong>Hora: </strong> <span th:text="${movimentacao.hora}"></span>

@@ -84,10 +84,10 @@
                         <tbody>
                             <tr>
                                 <td th:text="${movimentacao.id}"></td>
-                                <td th:text="${movimentacao.produto.id} + ' - ' + ${movimentacao.produto.nome}"></td>
+                                <td th:text="${movimentacao.produto.id} /+ ' - ' + ${movimentacao.produto.nome}"></td>
                                 <td th:text="${movimentacao.tipo}"></td>
                                 <td th:text="${movimentacao.quantidade}"></td>
-                                <td th:text="${movimentacao.data}"></td>
+                                <td th:text="${#dates.format(movimentacao.data, 'dd/MM/yyyy')}"></td>
                                 <td th:text="${movimentacao.hora}"></td>
                             </tr>
                         </tbody>
