@@ -85,7 +85,7 @@
                         </div>
                         <div class="form-group">
                             <label for="data">Data</label>
-                            <input id="data" name="data" type="date" class="form-control" th:field="${movimentacao.data}" required>
+                            <input id="data" name="data" type="date" class="form-control" th:field="${movimentacao.data}" min="2000-01-01" max="2099-12-31" required>
                         </div>
                         <div class="form-group">
                             <label for="hora">Horário</label>
