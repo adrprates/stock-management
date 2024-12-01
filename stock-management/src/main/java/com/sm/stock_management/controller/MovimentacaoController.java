@@ -81,12 +81,14 @@ public class MovimentacaoController {
     
     //metodo para carregar dados na pagina de atualizar movimentacao
     @GetMapping("/atualizar-produto/{id_produto}/{id_movimentacao}")
-    public String atualizar(@PathVariable Integer idProduto, @PathVariable Integer idMovimentacao, Model model) {
-        Produto produto = produtoService.buscarPorId(idProduto);
-        Movimentacao movimentacao = movimentacaoService.buscarPorId(idMovimentacao);
+    public String atualizar(@PathVariable Integer id_produto, @PathVariable Integer id_movimentacao, Model model) {
+        Produto produto = produtoService.buscarPorId(id_produto);
+        Movimentacao movimentacao = movimentacaoService.buscarPorId(id_movimentacao);
         if (produto == null) {
             return "redirect:/listagem-produtos";
-        } else if (movimentacao == null){
+        }
+        model.addAttribute("produto", produto);
+        if (movimentacao == null){
             return "redirect:/listagem-movimentacao-produto";
         }
         model.addAttribute("movimentacao", movimentacao);
