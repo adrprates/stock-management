@@ -4,6 +4,10 @@ import com.sm.stock_management.model.Movimentacao;
 import com.sm.stock_management.model.Produto;
 import com.sm.stock_management.service.MovimentacaoService;
 import com.sm.stock_management.service.ProdutoService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,18 +67,21 @@ public class MovimentacaoController {
         return "redirect:/listagem-movimentacao-produto/" + movimentacao.getProduto().getId();
     }
 
-    //metodo para carregar todas as movimnetacoes do produto acessado na pagina de listar movimentacoes
+    //metodo para carregar todas as movimentacoes do produto acessado na pagina de listar movimentacoes
     @GetMapping("/listagem-movimentacao-produto/{id}")
-    public String listar(@RequestParam(required = false) Date data, @PathVariable Integer id, Model model) {
+    public String listar(@RequestParam(required = false) String data, @PathVariable Integer id, Model model) {
         Produto produto = produtoService.buscarPorId(id);
         if (produto == null) {
             return "redirect:/listagem-produtos";
         }
         model.addAttribute("produto", produto);
-        if (data == null) {
+
+        if (data == null || data.isEmpty()) {
             model.addAttribute("movimentacoes", movimentacaoService.buscarTodas(produto));
         } else {
-            model.addAttribute("movimentacoes", movimentacaoService.buscarPorData(data, produto));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dataAtual = LocalDate.parse(data, formatter);            
+            model.addAttribute("movimentacoes", movimentacaoService.buscarPorData(dataAtual, produto));
         }
         return "listagem-movimentacao-produto";
     }

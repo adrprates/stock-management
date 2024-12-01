@@ -3,7 +3,7 @@ package com.sm.stock_management.service;
 import com.sm.stock_management.model.Movimentacao;
 import com.sm.stock_management.model.Produto;
 import com.sm.stock_management.repository.MovimentacaoRepository;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class MovimentacaoService {
         return movimentacaoRepository.findByProduto(produto);
     }
     
-    public List<Movimentacao> buscarPorData(Date data, Produto produto){
+    public List<Movimentacao> buscarPorData(LocalDate data, Produto produto){
         return movimentacaoRepository.findByDataAndProduto(data, produto);
     }
     
