@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.time.LocalTime;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,6 +34,7 @@ public class Movimentacao {
     private int quantidade;
     private String tipo;
     
+    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data;
     
