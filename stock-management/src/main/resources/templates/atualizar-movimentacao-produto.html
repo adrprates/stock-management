@@ -74,6 +74,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Produto</th>
                                 <th>Tipo</th>
                                 <th>Quantidade</th>
                                 <th>Data</th>
@@ -84,6 +85,7 @@
                             <tr>
                                 <td th:text="${movimentacao.id}"></td>
                                 <td th:text="${movimentacao.produto.id} + ' - ' + ${movimentacao.produto.nome}"></td>
+                                <td th:text="${movimentacao.tipo}"></td>
                                 <td th:text="${movimentacao.quantidade}"></td>
                                 <td th:text="${movimentacao.data}"></td>
                                 <td th:text="${movimentacao.hora}"></td>

@@ -104,7 +104,7 @@
                                 </li>
                             </ul>
                             <div class="botoes">
-                                <a id="btnAtualizar" th:href="@{/atualizar-movimentacao-produto/{id_produto}(id=${movimentacao.produto.id})/{id_movimentacao}(id=${movimentacao.id})}">Atualizar</a>
+                                <a id="btnAtualizar" th:href="@{/atualizar-produto/{id_produto}/{id_movimentacao}(id_produto=${movimentacao.produto.id}, id_movimentacao=${movimentacao.id})}">Atualizar</a>
                                 <a id="btnDeletar" th:href="@{/deletar-movimentacao/{id}(id=${movimentacao.id})}" class="btn btn-danger" 
                                 onclick="return confirm('Deseja realmente excluir esta movimentação?');">Deletar</a>
                             </div>
