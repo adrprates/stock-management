@@ -35,7 +35,7 @@ public class MovimentacaoController {
         if (produto == null) {
             return "redirect:/listagem-produtos";
         }
-        model.addAttribute("produto", new Produto());
+        model.addAttribute("produto", produto);
         model.addAttribute("movimentacao", new Movimentacao());
         return "movimentacao-produto";
     }
@@ -43,21 +43,24 @@ public class MovimentacaoController {
     //metodo para salvar a movimentacao na listagem de movimentacoes de um produto
     //metodo usado para realizar uma nova movimentacao e para a
     //atualizar uma movimentacao existente
-    @PostMapping("/salvar-movimentacao/{id}")
-    public String processarFormulario(@PathVariable Integer id, Model model, @ModelAttribute Movimentacao movimentacao) {
-        Produto produto = produtoService.buscarPorId(id);
+    @PostMapping("/salvar-movimentacao")
+    public String processarFormulario(Model model, @ModelAttribute Movimentacao movimentacao) {
+        Produto produto = produtoService.buscarPorId(movimentacao.getProduto().getId());
         if (produto == null) {
             return "redirect:/listagem-produtos";
         }
-        if(movimentacao.getId() != null){
+        movimentacao.setProduto(produto);
+    
+        if (movimentacao.getId() != null) {
             movimentacaoService.atualizar(movimentacao.getId(), movimentacao);
             model.addAttribute("mensagem", "Movimentação atualizada com sucesso!");
         } else {
             movimentacaoService.adicionar(movimentacao);
             model.addAttribute("mensagem", "Movimentação realizada com sucesso!");
         }
+    
         model.addAttribute("movimentacao", new Movimentacao());
-        return "redirect:/listagem-movimentacao-produto";
+        return "redirect:/listagem-movimentacao-produto/" + movimentacao.getProduto().getId();
     }
 
     //metodo para carregar todas as movimnetacoes do produto acessado na pagina de listar movimentacoes
