@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/static/css/listagem-movimentacao-produto.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/listagem-movimentacao-produto.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <title>Listagem de Movimetação</title>
 </head>
 <body>
@@ -15,7 +14,7 @@
             <div class="row">
                     <div class="col-12">
                         <div class="img-logo">
-                            <img id="logo" name="logo" src="../static/imagens/logo.png" alt="Logo da empresa"/>
+                            <img id="logo" name="logo" src="/imagens/logo.png" alt="Logo da empresa"/>
                         </div>
                     </div>
             </div>
@@ -29,16 +28,16 @@
                         <div class="col-6 nav_col">
                             <div class="navbar">
                                 <div class="menu_itens">
-                                    <a href="#" id="produtos" alt="Produtos">
-                                        <img id="produto_icon" src="../static/imagens/produto.png" alt="Ícone de produtos"/>
+                                    <a th:href="@{/listagem-produtos} id="produtos" alt="Produtos">
+                                        <img id="produto_icon" src="/imagens/produto.png" alt="Ícone de produtos"/>
                                         <span class="descricao_item">Produtos</span>
                                     </a>
-                                    <a href="#" id="categorias" alt="Categorias">
-                                        <img id="categoria_icon" src="../static/imagens/categoria.png" alt="Ícone de categorias"/>
+                                    <a th:href="@{/listagem-categorias}" id="categorias" alt="Categorias">
+                                        <img id="categoria_icon" src="/imagens/categoria.png" alt="Ícone de categorias"/>
                                         <span class="descricao_item">Categorias</span>
                                     </a>
-                                    <a href="#" id="usuarios" alt="Usuários">
-                                        <img id="usuarios_icon" src="../static/imagens/usuarios.png" alt="Ícone de usuários"/>
+                                    <a th:href="@{/listagem-usuarios}" id="usuarios" alt="Usuários">
+                                        <img id="usuarios_icon" src="/imagens/usuarios.png" alt="Ícone de usuários"/>
                                         <span class="descricao_item">Usuários</span>
                                     </a>
                                 </div>
@@ -46,7 +45,7 @@
                         </div>
                         <div class="col-3 nav_col">
                             <div class="usuario">
-                                <img id="usuario_icon" src="../static/imagens/usuario.png" alt="Ícone de usuário"/><br>
+                                <img id="usuario_icon" src="/imagens/usuario.png" alt="Ícone de usuário"/><br>
                                 <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
                                 <span id="usuario_cargo" title="Cargo">Cargo</span>
                             </div>
@@ -54,7 +53,7 @@
                         <div class="col-3 nav_col">
                             <div class="sair">
                                 <a href="#" id="logout" alt="Logout">
-                                    <img id="logout" src="../static/imagens/logout.png" alt="Ícone de logout"/>
+                                    <img id="logout" src="/imagens/logout.png" alt="Ícone de logout"/>
                                     <span class="descricao_item">Logout</span>
                                 </a>
                             </div>
@@ -68,38 +67,46 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1 id="nome_produto">Nome do produto</h1>
-                    <h1 id="titulo_listagem">Lista de Movimentções</h1>
-                    <form id="formulario" action="#" method="POST">
+                    <h1 id="nome_produto" name="produto" th:text="${produto.nome}"></h1>
+                    <h1 id="titulo_listagem">Lista de Movimentações</h1>
+                    <form id="formulario" action="listagem-movimentacao-produto" method="GET">
                         <div class="form-group">
-                            <label for="dataPesquisa">Pesquisar por data: </label>
-                            <input id="dataPesquisa" name= "dataPesquisa" type="date" class="form-control"/>
+                            <label for="data">Pesquisar por data: </label>
+                            <input id="data" name= "data" type="date" class="form-control"/>
                         </div>
                         <div class="form-group botoes">
                             <input id="btnEnviar" name="btnEnviar" type="submit" class="btn btn-primary" value="Pesquisar">
                         </div>
                     </form>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>ID: </strong> 1
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Tipo: </strong> Inclusão
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Quantidade: </strong> 10
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Data: </strong> 25/11/2024
-                        </li>
-                        <li class="list-group-item bg-dark text-white">
-                            <strong>Horário: </strong> 12:50
+                    <ul class="list-group">
+                        <li class="list-group-item bg-dark text-white" th:each="movimentacao : ${movimentacoes}">
+                            <ul>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>ID: </strong> <span th:text="${movimentacao.id}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Produto: </strong> <span th:text="${movimentacao.produto.id} + ' - ' + ${movimentacao.produto.nome}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Quantidade: </strong> <span th:text="${produto.categoria.id} + ' - ' + ${produto.categoria.nome}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Tipo: </strong> <span th:text="${movimentacao.tipo}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Data: </strong> <span th:text="${movimentacao.data}"></span>
+                                </li>
+                                <li class="list-group-item bg-dark text-white">
+                                    <strong>Hora: </strong> <span th:text="${movimentacao.hora}"></span>
+                                </li>
+                            </ul>
+                            <div class="botoes">
+                                <a id="btnAtualizar" th:href="@{/atualizar-movimentacao-produto/{id_produto}(id=${movimentacao.produto.id})/{id_movimentacao}(id=${movimentacao.id})}">Atualizar</a>
+                                <a id="btnDeletar" th:href="@{/deletar-movimentacao/{id}(id=${movimentacao.id})}" class="btn btn-danger" 
+                                onclick="return confirm('Deseja realmente excluir esta movimentação?');">Deletar</a>
+                            </div>
                         </li>
                     </ul>
-                    <div class="botoes">
-                        <a id="btnAtualizar" href="#">Atualizar</a>
-                        <a id="btnDeletar" href="#">Deletar</a>
-                    </div>
                 </div>
             </div>
         </div>
