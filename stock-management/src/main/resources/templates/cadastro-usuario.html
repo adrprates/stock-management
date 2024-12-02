@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/static/css/cadastro-usuario.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/cadastro-usuario.css}" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <title>Cadastrar Usuário</title>
 </head>
 <body>
@@ -15,7 +14,7 @@
             <div class="row">
                     <div class="col-12">
                         <div class="img-logo">
-                            <img id="logo" name="logo" src="../static/imagens/logo.png" alt="Logo da empresa"/>
+                            <img id="logo" name="logo" src="/imagens/logo.png" alt="Logo da empresa"/>
                         </div>
                     </div>
             </div>
@@ -30,15 +29,15 @@
                             <div class="navbar">
                                 <div class="menu_itens">
                                     <a href="#" id="produtos" alt="Produtos">
-                                        <img id="produto_icon" src="../static/imagens/produto.png" alt="Ícone de produtos"/>
+                                        <img id="produto_icon" src="/imagens/produto.png" alt="Ícone de produtos"/>
                                         <span class="descricao_item">Produtos</span>
                                     </a>
                                     <a href="#" id="categorias" alt="Categorias">
-                                        <img id="categoria_icon" src="../static/imagens/categoria.png" alt="Ícone de categorias"/>
+                                        <img id="categoria_icon" src="/imagens/categoria.png" alt="Ícone de categorias"/>
                                         <span class="descricao_item">Categorias</span>
                                     </a>
                                     <a href="#" id="usuarios" alt="Usuários">
-                                        <img id="usuarios_icon" src="../static/imagens/usuarios.png" alt="Ícone de usuários"/>
+                                        <img id="usuarios_icon" src="/imagens/usuarios.png" alt="Ícone de usuários"/>
                                         <span class="descricao_item">Usuários</span>
                                     </a>
                                 </div>
@@ -46,7 +45,7 @@
                         </div>
                         <div class="col-3 nav_col">
                             <div class="usuario">
-                                <img id="usuario_icon" src="../static/imagens/usuario.png" alt="Ícone de usuário"/><br>
+                                <img id="usuario_icon" src="/imagens/usuario.png" alt="Ícone de usuário"/><br>
                                 <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
                                 <span id="usuario_cargo" title="Cargo">Cargo</span>
                             </div>
@@ -54,7 +53,7 @@
                         <div class="col-3 nav_col">
                             <div class="sair">
                                 <a href="#" id="logout" alt="Logout">
-                                    <img id="logout" src="../static/imagens/logout.png" alt="Ícone de logout"/>
+                                    <img id="logout" src="/imagens/logout.png" alt="Ícone de logout"/>
                                     <span class="descricao_item">Logout</span>
                                 </a>
                             </div>
@@ -70,22 +69,25 @@
                 <div class="col-12">
                     <div class="infoCadastro">
                         <h1 id="titulo_cadastro">Cadastro de Usuário</h1>
-                        <form action="#" id="formulario" method="POST">
+                        <form th:action="@{/salvar-usuario}" id="formulario" method="POST" th:object="${usuario}">
+                            <div class="form-group">
+                                <label for="nome">Nome: </label>
+                                <input id="nome" name="nome" type="text" class="form-control" th:field="${usuario.nome}" required/>
+                            </div>
                             <div class="form-group">
                                 <label for="login">Login: </label>
-                                <input id="login" name="login" type="email" class="form-control" required/>
+                                <input id="login" name="login" type="email" class="form-control" th:field="${usuario.login}" required/>
                             </div>
                             <div class="form-group">
                                 <label for="senha">Senha: </label>
-                                <input id="senha" name="senha" type="password" class="form-control" required/>
+                                <input id="senha" name="senha" type="password" class="form-control" th:field="${usuario.senha}" required/>
                             </div>
                             <div class="form-group">
-                                <label for="permissao">Cargo: </label>
-                                <select id="permissao" name="permissao" class="form-control" required>
-                                    <option value="ESTOQUISTA">Estoquista</option>
-                                    <option value="GERENTE">Gerente</option>
-                                    <option value="COMPRADOR">Comprador</option>
-                                    <option value="VENDEDOR">Vendedor</option>
+                                <select name="cargo" id="cargo" class="form-control" th:field="${usuario.cargo}" required>
+                                    <option value="Gerente">Gerente</option>
+                                    <option value="Estoquista">Estoquista</option>
+                                    <option value="Comprador">Comprador</option>
+                                    <option value="Vendedor">Vendedor</option>
                                 </select>
                             </div>
                             <div class="form-group text-center">
