@@ -39,7 +39,10 @@ public class UsuarioService {
         Usuario usuarioEncontrado = buscarPorId(id);
         
         usuarioEncontrado.setNome(usuario.getNome());
-        
+        usuarioEncontrado.setLogin(usuario.getLogin());
+        usuarioEncontrado.setSenha(usuario.getSenha());
+        usuarioEncontrado.setCargo(usuario.getCargo());
+          
         usuarioRepository.save(usuarioEncontrado);
         return usuarioEncontrado;
     }
