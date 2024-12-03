@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     List<Usuario> findByNomeContaining(String nome);
+    boolean existsByLogin(String login);
 }
