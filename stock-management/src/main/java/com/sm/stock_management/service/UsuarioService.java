@@ -18,6 +18,9 @@ public class UsuarioService {
     UsuarioRepository usuarioRepository;
     
     public Usuario adicionar(Usuario usuario){
+        if(usuarioRepository.existsByLogin(usuario.getLogin())){
+            return null;
+        }
         usuario.setId(null);
         usuarioRepository.save(usuario);
         return usuario;

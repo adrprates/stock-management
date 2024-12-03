@@ -38,8 +38,14 @@ public class UsuarioController {
             usuarioService.atualizar(usuario.getId(), usuario);
             model.addAttribute("mensagem", "Usuário atualizado com sucesso!");
         } else {
-            usuarioService.adicionar(usuario);
-            model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
+            Usuario usuarioEncontrado = usuarioService.adicionar(usuario);
+            if(usuarioEncontrado != null){
+                model.addAttribute("mensagem", "Login já está em uso.");
+                return "cadastro-usuario";
+            } else{
+                usuarioService.adicionar(usuario);
+                model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
+            }
         }
         model.addAttribute("usuario", new Usuario());
         return "redirect:/listagem-usuarios";
