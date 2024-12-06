@@ -3,6 +3,7 @@ package com.sm.stock_management.controller;
 import com.sm.stock_management.model.Categoria;
 import com.sm.stock_management.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,9 +77,15 @@ public class CategoriaController {
         if(categoria == null){
             return "redirect:/listagem-categorias"; 
         } 
-        categoriaService.excluir(id);
-        redirectAttributes.addFlashAttribute("mensagem", "Categoria deletada com sucesso!");
-        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
-        return "redirect:/listagem-categorias";   
+        try {
+            categoriaService.excluir(id);
+            redirectAttributes.addFlashAttribute("mensagem", "Categoria deletada com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+            return "redirect:/listagem-categorias";
+        } catch (DataIntegrityViolationException e) {
+            redirectAttributes.addFlashAttribute("mensagem", "Não é possível excluir esta categoria, pois ela está associada a um ou mais produtos.");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
+            return "redirect:/listagem-categorias";
+        }  
     }
 }
