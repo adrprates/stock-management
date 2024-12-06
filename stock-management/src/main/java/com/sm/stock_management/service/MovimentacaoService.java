@@ -3,6 +3,7 @@ package com.sm.stock_management.service;
 import com.sm.stock_management.model.Movimentacao;
 import com.sm.stock_management.model.Produto;
 import com.sm.stock_management.repository.MovimentacaoRepository;
+import com.sm.stock_management.repository.ProdutoRepository;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,17 @@ public class MovimentacaoService {
     @Autowired
     MovimentacaoRepository movimentacaoRepository;
     
+    @Autowired
+    ProdutoRepository produtoRepository;
+    
     public Movimentacao adicionar(Movimentacao movimentacao){
-        int resultado = movimentacao.getProduto().getQuantidade() - movimentacao.getQuantidade();
-        if(resultado <= 0){
+        if(aplicarMovimentacao(movimentacao) == true){
+            movimentacao.setId(null);
+            movimentacaoRepository.save(movimentacao);
+            return movimentacao;
+        } else {
             return null;
         }
-        movimentacao.setId(null);
-        movimentacaoRepository.save(movimentacao);
-        return movimentacao;
     }
     
     public Movimentacao buscarPorId(Integer id){
@@ -41,21 +45,36 @@ public class MovimentacaoService {
         return movimentacaoRepository.findByDataAndProduto(data, produto);
     }
     
+    public boolean aplicarMovimentacao(Movimentacao movimentacao){
+        Produto produto = movimentacao.getProduto();
+        if(movimentacao.getTipo().equalsIgnoreCase("Inclusao")){
+            produto.setQuantidade(produto.getQuantidade() + movimentacao.getQuantidade());
+        } else{
+            int resultado = produto.getQuantidade() - movimentacao.getQuantidade();
+            if(resultado >= 0){
+                produto.setQuantidade(produto.getQuantidade() - movimentacao.getQuantidade());
+            } else {
+                return false;
+            }
+        }
+        produtoRepository.save(produto);
+        return true;
+    }
+    
     public Movimentacao atualizar(Integer id, Movimentacao movimentacao){
         Movimentacao movimentacaoEncontrada = buscarPorId(id);
-        
-        int resultado = movimentacao.getProduto().getQuantidade() - movimentacao.getQuantidade();
-        if(resultado <= 0){
-            return null;
-        }
         
         movimentacaoEncontrada.setQuantidade(movimentacao.getQuantidade());
         movimentacaoEncontrada.setTipo(movimentacao.getTipo());
         movimentacaoEncontrada.setData(movimentacao.getData());
         movimentacaoEncontrada.setHora(movimentacao.getHora());
         
-        movimentacaoRepository.save(movimentacaoEncontrada);
-        return  movimentacaoEncontrada;
+        if(aplicarMovimentacao(movimentacaoEncontrada) == true){
+            movimentacaoRepository.save(movimentacaoEncontrada);
+            return  movimentacaoEncontrada;
+        } else{
+            return null;
+        }
     }
     
     public void excluir(Integer id){

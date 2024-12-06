@@ -19,6 +19,7 @@ public class ProdutoService {
     
     public Produto adicionar(Produto produto){
         produto.setId(null);
+        produto.setQuantidade(0);
         produtoRepository.save(produto);
         return produto;
     }
@@ -40,7 +41,6 @@ public class ProdutoService {
         
         produtoEncontrado.setNome(produto.getNome());
         produtoEncontrado.setCategoria(produto.getCategoria());
-        produtoEncontrado.setQuantidade(produto.getQuantidade());
         produtoEncontrado.setPreco(produto.getPreco());
         produtoEncontrado.setDescricao(produto.getDescricao());
         

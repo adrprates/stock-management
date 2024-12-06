@@ -80,21 +80,13 @@
                         <div class="form-group">
                             <label for="tipo">Tipo: </label>
                             <select name="tipo" id="tipo" class="form-control" th:field="${movimentacao.tipo}" required>
-                                <option value="Inclusão">Inclusão</option>
+                                <option value="Inclusao">Inclusão</option>
                                 <option value="Retirada">Retirada</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="quantidade">Quantidade: </label>
-                            <input id="quantidade" name="quantidade" type="number" class="form-control" th:field="${movimentacao.quantidade}" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="data">Data</label>
-                            <input id="data" name="data" type="date" class="form-control" th:field="${movimentacao.data}" min="2000-01-01" max="2099-12-31" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="hora">Horário</label>
-                            <input id="hora" name="hora" type="time" class="form-control" th:field="${movimentacao.hora}" required>
+                            <input id="quantidade" name="quantidade" type="number" class="form-control" th:field="${movimentacao.quantidade}" min="1" required/>
                         </div>
                         <div class="form-group text-center">
                             <input id="btnEnviar" name="btnEnviar" type="submit" class="btn btn-primary" value="Enviar"/>

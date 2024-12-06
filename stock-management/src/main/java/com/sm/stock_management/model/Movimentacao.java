@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,20 +35,19 @@ public class Movimentacao {
     private int quantidade;
     private String tipo;
     
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date data;
+    private LocalDate data;
     
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime hora;
     
-    //construtor vazio
-    public Movimentacao(){
-        
+    public Movimentacao() {
+        this.data = LocalDate.now();
+        this.hora = LocalTime.now(); 
     }
 
     //construtor
-    public Movimentacao(Integer id, Produto produto, int quantidade, String tipo, Date data, LocalTime hora) {
+    public Movimentacao(Integer id, Produto produto, int quantidade, String tipo, LocalDate data, LocalTime hora) {
         this.id = id;
         this.produto = produto;
         this.quantidade = quantidade;
@@ -89,11 +89,11 @@ public class Movimentacao {
         this.tipo = tipo;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

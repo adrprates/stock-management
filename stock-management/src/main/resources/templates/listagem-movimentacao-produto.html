@@ -102,7 +102,9 @@
                                     <strong>Quantidade: </strong> <span th:text="${movimentacao.quantidade}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
-                                    <strong>Tipo: </strong> <span th:text="${movimentacao.tipo}"></span>
+                                    <strong>Tipo: </strong>
+                                    <span th:if="${movimentacao.tipo == 'Inclusao'}" th:text="'Inclusão'"></span>
+                                    <span th:if="${movimentacao.tipo == 'Retirada'}" th:text="'Retirada'"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <strong>Data: </strong> <span th:text="${#dates.format(movimentacao.data, 'dd/MM/yyyy')}"></span>
