@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -32,13 +33,15 @@ public class CategoriaController {
     //metodo usando para o cadastro de uma nova categoria e para a
     //atualizacao de uma categoria existente
     @PostMapping("/salvar-categoria")
-    public String processarFormulario(Model model, @ModelAttribute Categoria categoria) {
+    public String processarFormulario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Categoria categoria) {
         if(categoria.getId() != null){
             categoriaService.atualizar(categoria.getId(), categoria);
-            model.addAttribute("mensagem", "Categoria atualizada com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagem", "Categoria atualizada com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         } else {
             categoriaService.adicionar(categoria);
-            model.addAttribute("mensagem", "Categoria cadastrado com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagem", "Categoria cadastrada com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         }
         model.addAttribute("categoria", new Categoria());
         return "redirect:/listagem-categorias";
@@ -68,12 +71,14 @@ public class CategoriaController {
     
     //metodo para deletar categoria
     @GetMapping("/deletar-categoria/{id}")
-    public String deletar(@PathVariable Integer id){
+    public String deletar(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         Categoria categoria = categoriaService.buscarPorId(id);
         if(categoria == null){
             return "redirect:/listagem-categorias"; 
         } 
         categoriaService.excluir(id);
+        redirectAttributes.addFlashAttribute("mensagem", "Categoria deletada com sucesso!");
+        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         return "redirect:/listagem-categorias";   
     }
 }

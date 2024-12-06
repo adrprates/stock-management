@@ -67,6 +67,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <div th:if="${mensagem != null}" class="alert alert-dismissible fade show" 
+                        th:classappend="${tipoMensagem}" role="alert" style="margin-top: 15px;">
+                        <span th:text="${mensagem}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     <div class="infoAtualizar">
                         <h1 id="titulo_atualizar">Atualizar Categoria</h1>
                         <form th:action="@{/salvar-categoria}" id="formulario" method="POST" th:object="${categoria}">
