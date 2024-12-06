@@ -20,6 +20,10 @@ public class MovimentacaoService {
     MovimentacaoRepository movimentacaoRepository;
     
     public Movimentacao adicionar(Movimentacao movimentacao){
+        int resultado = movimentacao.getProduto().getQuantidade() - movimentacao.getQuantidade();
+        if(resultado <= 0){
+            return null;
+        }
         movimentacao.setId(null);
         movimentacaoRepository.save(movimentacao);
         return movimentacao;
@@ -39,6 +43,11 @@ public class MovimentacaoService {
     
     public Movimentacao atualizar(Integer id, Movimentacao movimentacao){
         Movimentacao movimentacaoEncontrada = buscarPorId(id);
+        
+        int resultado = movimentacao.getProduto().getQuantidade() - movimentacao.getQuantidade();
+        if(resultado <= 0){
+            return null;
+        }
         
         movimentacaoEncontrada.setQuantidade(movimentacao.getQuantidade());
         movimentacaoEncontrada.setTipo(movimentacao.getTipo());
