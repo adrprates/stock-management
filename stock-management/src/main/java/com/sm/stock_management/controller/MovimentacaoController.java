@@ -57,15 +57,22 @@ public class MovimentacaoController {
         movimentacao.setProduto(produto);
     
         if (movimentacao.getId() != null) {
-            movimentacaoService.atualizar(movimentacao.getId(), movimentacao);
-            redirectAttributes.addFlashAttribute("mensagem", "Movimentação atualizada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+            if(movimentacaoService.atualizar(movimentacao.getId(), movimentacao) == null){
+                redirectAttributes.addFlashAttribute("mensagem", "Erro: Quantidade insuficiente de produtos para serem retirados!");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
+            } else{
+                redirectAttributes.addFlashAttribute("mensagem", "Movimentação atualizada com sucesso!");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+            }
         } else {
-            movimentacaoService.adicionar(movimentacao);
-            redirectAttributes.addFlashAttribute("mensagem", "Movimentação realizada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+            if(movimentacaoService.adicionar(movimentacao) == null){
+                redirectAttributes.addFlashAttribute("mensagem", "Erro: Quantidade insuficiente de produtos para serem retirados!");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
+            } else{
+                redirectAttributes.addFlashAttribute("mensagem", "Movimentação realizada com sucesso!");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+            }
         }
-    
         model.addAttribute("movimentacao", new Movimentacao());
         return "redirect:/listagem-movimentacao-produto/" + movimentacao.getProduto().getId();
     }

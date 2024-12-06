@@ -68,7 +68,7 @@ public class MovimentacaoService {
         movimentacaoEncontrada.setTipo(movimentacao.getTipo());
         movimentacaoEncontrada.setData(movimentacao.getData());
         movimentacaoEncontrada.setHora(movimentacao.getHora());
-        
+                
         if(aplicarMovimentacao(movimentacaoEncontrada) == true){
             movimentacaoRepository.save(movimentacaoEncontrada);
             return  movimentacaoEncontrada;
