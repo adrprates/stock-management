@@ -70,6 +70,11 @@
                     <div class="botoes">
                         <a id="btnCadastrar" href="cadastro-produto">Novo</a>
                     </div>
+                    <div th:if="${mensagem != null}" class="alert alert-dismissible fade show" 
+                        th:classappend="${tipoMensagem}" role="alert" style="margin-top: 15px;">
+                        <span th:text="${mensagem}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     <h1 id="titulo_listagem">Lista de Produtos</h1>
                     <form id="formulario" action="listagem-produtos" method="GET">
                         <div class="form-group">
@@ -81,6 +86,9 @@
                         </div>
                     </form>
                     <ul class="list-group">
+                        <li th:if="${#lists.isEmpty(produtos)}" class="list-group-item bg-dark text-white text-center">
+                            Nenhum resultado encontrado
+                        </li>
                         <li class="list-group-item bg-dark text-white" th:each="produto : ${produtos}">
                             <ul>
                                 <li class="list-group-item bg-dark text-white">

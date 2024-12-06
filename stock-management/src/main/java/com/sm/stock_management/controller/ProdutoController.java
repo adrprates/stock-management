@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -43,13 +44,15 @@ public class ProdutoController {
     //metodo usado para o cadastro de um novo produto e para a
     //atualizacao de um produto existente
     @PostMapping("/salvar-produto")
-    public String processarFormulario(Model model, @ModelAttribute Produto produto) {
+    public String processarFormulario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Produto produto) {
         if(produto.getId() != null){
             produtoService.atualizar(produto.getId(), produto);
-            model.addAttribute("mensagem", "Produto atualizado com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagem", "Produto atualizado com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         } else {
             produtoService.adicionar(produto);
-            model.addAttribute("mensagem", "Produto cadastrado com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagem", "Produto cadastrado com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         }
         model.addAttribute("produto", new Produto());
         return "redirect:/listagem-produtos";
@@ -81,12 +84,14 @@ public class ProdutoController {
     
     //metodo para deletar produto
     @GetMapping("/deletar-produto/{id}")
-    public String deletar(@PathVariable Integer id){
+    public String deletar(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         Produto produto = produtoService.buscarPorId(id);
         if(produto == null){
             return "redirect:/listagem-produtos"; 
         } 
         produtoService.excluir(id);
+        redirectAttributes.addFlashAttribute("mensagem", "Produto deletado com sucesso!");
+        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         return "redirect:/listagem-produtos";   
     }
 }
