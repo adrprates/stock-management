@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -33,16 +34,19 @@ public class UsuarioController {
     //metodo usado para o cadastro de um novo usuario e para a
     //atualizacao de um usuario existente
     @PostMapping("/salvar-usuario")
-    public String processarFormulario(Model model, @ModelAttribute Usuario usuario) {
+    public String processarFormulario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Usuario usuario) {
         if(usuario.getId() != null){
             usuarioService.atualizar(usuario.getId(), usuario);
-            model.addAttribute("mensagem", "Usuário atualizado com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagem", "Usuário atualizado com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         } else {
             if(usuarioService.adicionar(usuario) == null){
-                model.addAttribute("mensagem", "Login já está em uso.");
-                return "cadastro-usuario";
+                redirectAttributes.addFlashAttribute("mensagem", "Login já está em uso.");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
+                return "redirect:/cadastro-usuario";
             } else{
-                model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
+                redirectAttributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso!");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
             }
         }
         model.addAttribute("usuario", new Usuario());
@@ -73,12 +77,14 @@ public class UsuarioController {
     
     //metodo para deletar usuario
     @GetMapping("/deletar-usuario/{id}")
-    public String deletar(@PathVariable Integer id){
+    public String deletar(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         Usuario usuario = usuarioService.buscarPorId(id);
         if(usuario == null){
             return "redirect:/listagem-usuarios"; 
         } 
         usuarioService.excluir(id);
+        redirectAttributes.addFlashAttribute("mensagem", "Usuário deletado com sucesso.");
+        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         return "redirect:/listagem-usuarios";   
     } 
 }
