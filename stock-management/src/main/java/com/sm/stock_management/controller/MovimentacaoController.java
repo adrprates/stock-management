@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -48,7 +49,7 @@ public class MovimentacaoController {
     //metodo usado para realizar uma nova movimentacao e para a
     //atualizar uma movimentacao existente
     @PostMapping("/salvar-movimentacao")
-    public String processarFormulario(Model model, @ModelAttribute Movimentacao movimentacao) {
+    public String processarFormulario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Movimentacao movimentacao) {
         Produto produto = produtoService.buscarPorId(movimentacao.getProduto().getId());
         if (produto == null) {
             return "redirect:/listagem-produtos";
@@ -57,10 +58,12 @@ public class MovimentacaoController {
     
         if (movimentacao.getId() != null) {
             movimentacaoService.atualizar(movimentacao.getId(), movimentacao);
-            model.addAttribute("mensagem", "Movimentação atualizada com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagem", "Movimentação atualizada com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         } else {
             movimentacaoService.adicionar(movimentacao);
-            model.addAttribute("mensagem", "Movimentação realizada com sucesso!");
+            redirectAttributes.addFlashAttribute("mensagem", "Movimentação realizada com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         }
     
         model.addAttribute("movimentacao", new Movimentacao());
@@ -104,13 +107,15 @@ public class MovimentacaoController {
     
     //metodo para deletar movimentacao
     @GetMapping("/deletar-movimentacao/{id}")
-    public String deletar(@PathVariable Integer id){
+    public String deletar(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         Movimentacao movimentacao = movimentacaoService.buscarPorId(id);
         int produtoId = movimentacao.getProduto().getId();
         if(movimentacao == null){
             return "redirect:/listagem-movimentacao-produto/" + produtoId; 
         } 
         movimentacaoService.excluir(id);
+        redirectAttributes.addFlashAttribute("mensagem", "Movimentação deletada com sucesso!");
+        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
         return "redirect:/listagem-movimentacao-produto/" + produtoId;   
     }
 }
