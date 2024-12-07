@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,13 +87,19 @@ public class MovimentacaoController {
         }
         model.addAttribute("produto", produto);
 
+        List<Movimentacao> movimentacoes;
         if (data == null || data.isEmpty()) {
-            model.addAttribute("movimentacoes", movimentacaoService.buscarTodas(produto));
+            movimentacoes = movimentacaoService.buscarTodas(produto);
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate dataAtual = LocalDate.parse(data, formatter);            
-            model.addAttribute("movimentacoes", movimentacaoService.buscarPorData(dataAtual, produto));
+            movimentacoes = movimentacaoService.buscarPorData(dataAtual, produto);
         }
+
+        Movimentacao ultimaMovimentacao = movimentacaoService.obterUltimaMovimentacao();
+        model.addAttribute("movimentacoes", movimentacoes);
+        model.addAttribute("ultimaMovimentacao", ultimaMovimentacao);
+
         return "listagem-movimentacao-produto";
     }
     

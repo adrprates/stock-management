@@ -115,10 +115,11 @@
                             </ul>
                             <div class="botoes">
                                 <a id="btnDeletar" th:href="@{/deletar-movimentacao/{id}(id=${movimentacao.id})}" class="btn btn-danger" 
-                                onclick="return confirm('Deseja realmente excluir esta movimentação?');">Deletar</a>
+                                onclick="return confirm('Deseja realmente excluir esta movimentação?');"
+                                th:if="${movimentacao.id == ultimaMovimentacao.id}">Deletar</a>
                             </div>
                         </li>
-                    </ul>
+                    </ul>                    
                 </div>
             </div>
         </div>

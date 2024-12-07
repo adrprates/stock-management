@@ -17,4 +17,5 @@ import org.springframework.stereotype.Repository;
 public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Integer>{
     List<Movimentacao> findByDataAndProduto(LocalDate data, Produto produto);
     List<Movimentacao> findByProduto(Produto produto);
+    Movimentacao findTopByOrderByDataDescHoraDesc();
 }

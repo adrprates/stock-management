@@ -45,6 +45,10 @@ public class MovimentacaoService {
         return movimentacaoRepository.findByDataAndProduto(data, produto);
     }
     
+    public Movimentacao obterUltimaMovimentacao() {
+        return movimentacaoRepository.findTopByOrderByDataDescHoraDesc();
+    }
+    
     public boolean aplicarMovimentacao(Movimentacao movimentacao){
         Produto produto = movimentacao.getProduto();
         if(movimentacao.getTipo().equalsIgnoreCase("Inclusao")){
