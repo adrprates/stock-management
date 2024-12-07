@@ -65,6 +65,15 @@ public class MovimentacaoService {
         return true;
     }
     
+    public void removerMovimentacao(Movimentacao movimentacao){
+        Produto produto = movimentacao.getProduto();
+        if(movimentacao.getTipo().equalsIgnoreCase("Inclusao")){
+            produto.setQuantidade(produto.getQuantidade() - movimentacao.getQuantidade());
+        } else {
+            produto.setQuantidade(produto.getQuantidade() + movimentacao.getQuantidade());
+        }
+    }
+    
     public Movimentacao atualizar(Integer id, Movimentacao movimentacao){
         Movimentacao movimentacaoEncontrada = buscarPorId(id);
         
@@ -83,6 +92,8 @@ public class MovimentacaoService {
     
     public void excluir(Integer id){
         Movimentacao movimentacaoEncontrada = buscarPorId(id);
+        
+        removerMovimentacao(movimentacaoEncontrada);
         
         movimentacaoRepository.deleteById(movimentacaoEncontrada.getId());
     }
