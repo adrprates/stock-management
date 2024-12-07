@@ -29,25 +29,15 @@ body{
     margin-top: 4px;
 }
 
-.retanguloEsquerdo, .infoLogin{
-    margin-top: 100px;
-    height: 300px;
-}
-
-.retanguloEsquerdo{
-    background: #7A25E7;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
 #titulo{
     font-weight: bold;
 }
 
 .infoLogin{
+    margin-top: 100px;
+    color: white;
     font-size: 18px;
-    font-weight: bold;
-    background: white;
+    background: #2c2c2c;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     justify-items: center;
