@@ -31,9 +31,11 @@ public class ProdutoController {
 
     //metodo para carregar a pagina de cadastrar produto
     @GetMapping("/cadastro-produto")
-    public String cadastrar(Model model) {
+    public String cadastrar(Model model, RedirectAttributes redirectAttributes) {
     List<Categoria> categorias = categoriaService.buscarTodas();
     if (categorias == null || categorias.isEmpty()) {
+        redirectAttributes.addFlashAttribute("mensagem", "É preciso haver ao menos uma categoria cadastrada!");
+        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
         return "redirect:/listagem-produtos";
     }
     model.addAttribute("categorias", categorias);
