@@ -20,7 +20,7 @@ public class Usuario {
     private Integer id;
     
     private String nome;
-    private String login;
+    private String email;
     private String senha;
     private String cargo;
     
@@ -30,10 +30,10 @@ public class Usuario {
     }
 
     //construtor
-    public Usuario(Integer id, String nome, String login, String senha, String cargo) {
+    public Usuario(Integer id, String nome, String email, String senha, String cargo) {
         this.id = id;
         this.nome = nome;
-        this.login = login;
+        this.email = email;
         this.senha = senha;
         this.cargo = cargo;
     }
@@ -55,12 +55,12 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {

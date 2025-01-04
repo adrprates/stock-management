@@ -32,27 +32,29 @@
                                         <img id="produto_icon" src="/imagens/produto.png" alt="Ícone de produtos"/>
                                         <span class="descricao_item">Produtos</span>
                                     </a>
-                                    <a th:href="@{/listagem-categorias}" id="categorias" alt="Categorias">
+                                    <a th:if="${usuarioLogado != null and (usuarioLogado.cargo == 'Gerente' or usuarioLogado.cargo == 'Estoquista')}" 
+                                       th:href="@{/listagem-categorias}" id="categorias" alt="Categorias">
                                         <img id="categoria_icon" src="/imagens/categoria.png" alt="Ícone de categorias"/>
                                         <span class="descricao_item">Categorias</span>
                                     </a>
-                                    <a th:href="@{/listagem-usuarios}" id="usuarios" alt="Usuários">
+                                    <a th:if="${usuarioLogado != null and usuarioLogado.cargo == 'Gerente'}" 
+                                       th:href="@{/listagem-usuarios}" id="usuarios" alt="Usuários">
                                         <img id="usuarios_icon" src="/imagens/usuarios.png" alt="Ícone de usuários"/>
                                         <span class="descricao_item">Usuários</span>
                                     </a>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                         <div class="col-3 nav_col">
-                            <div class="usuario">
+                            <div class="usuario" th:if="${usuarioLogado != null}">
                                 <img id="usuario_icon" th:src="@{/imagens/usuario.png}" alt="Ícone de usuário"/><br>
-                                <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
-                                <span id="usuario_cargo" title="Cargo">Cargo</span>
-                            </div>
+                                <span id="usuario_email" th:text="${usuarioLogado.email}"></span><br>
+                                <span id="usuario_cargo" th:text="${usuarioLogado.cargo}"></span>
+                            </div>                        
                         </div>
                         <div class="col-3 nav_col">
                             <div class="sair">
-                                <a href="#" id="logout" alt="Logout">
+                                <a href="/logout" id="logout" alt="Logout">
                                     <img id="logout" th:src="@{/imagens/logout.png}" alt="Ícone de logout"/>
                                     <span class="descricao_item">Logout</span>
                                 </a>
@@ -68,8 +70,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="botoes">
-                        <a id="btnCadastrar" href="cadastro-produto">Novo</a>
-                    </div>
+                        <a th:if="${usuarioLogado != null and (usuarioLogado.cargo == 'Gerente' or usuarioLogado.cargo == 'Estoquista')}"
+                           id="btnCadastrar" href="cadastro-produto">Novo</a>
+                    </div>                    
                     <div th:if="${mensagem != null}" class="alert alert-dismissible fade show" 
                         th:classappend="${tipoMensagem}" role="alert" style="margin-top: 15px;">
                         <span th:text="${mensagem}"></span>
@@ -111,11 +114,14 @@
                                 </li>
                             </ul>
                             <div class="botoes">
-                                <a id="btnMovimentacao" th:href="@{/listagem-movimentacao-produto/{id}(id=${produto.id})}">Movimentação</a>
-                                <a id="btnAtualizar" th:href="@{/atualizar-produto/{id}(id=${produto.id})}">Atualizar</a>
-                                <a id="btnDeletar" th:href="@{/deletar-produto/{id}(id=${produto.id})}" class="btn btn-danger" 
-                                onclick="return confirm('Deseja realmente excluir este produto?');">Deletar</a>
-                            </div>
+                                <a th:if="${usuarioLogado != null and (usuarioLogado.cargo == 'Gerente' or usuarioLogado.cargo == 'Estoquista')}"
+                                   id="btnMovimentacao" th:href="@{/listagem-movimentacao-produto/{id}(id=${produto.id})}">Movimentação</a>
+                                <a th:if="${usuarioLogado != null and (usuarioLogado.cargo == 'Gerente' or usuarioLogado.cargo == 'Estoquista')}"
+                                   id="btnAtualizar" th:href="@{/atualizar-produto/{id}(id=${produto.id})}">Atualizar</a>
+                                <a th:if="${usuarioLogado != null and (usuarioLogado.cargo == 'Gerente' or usuarioLogado.cargo == 'Estoquista')}"
+                                   id="btnDeletar" th:href="@{/deletar-produto/{id}(id=${produto.id})}" class="btn btn-danger"
+                                   onclick="return confirm('Deseja realmente excluir este produto?');">Deletar</a>
+                            </div>                            
                         </li>
                     </ul>
                 </div>

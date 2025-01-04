@@ -18,7 +18,7 @@ public class UsuarioService {
     UsuarioRepository usuarioRepository;
     
     public Usuario adicionar(Usuario usuario){
-        if(usuarioRepository.existsByLogin(usuario.getLogin())){
+        if(usuarioRepository.existsByEmail(usuario.getEmail())){
             return null;
         }
         usuario.setId(null);

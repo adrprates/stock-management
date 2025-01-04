@@ -44,15 +44,15 @@
                             </div>
                         </div>
                         <div class="col-3 nav_col">
-                            <div class="usuario">
-                                <img id="usuario_icon" src="/imagens/usuario.png" alt="Ícone de usuário"/><br>
-                                <span id ="usuario_nome" title="Nome">nome@nwest.com</span><br>
-                                <span id="usuario_cargo" title="Cargo">Cargo</span>
-                            </div>
+                            <div class="usuario" th:if="${usuarioLogado != null}">
+                                <img id="usuario_icon" th:src="@{/imagens/usuario.png}" alt="Ícone de usuário"/><br>
+                                <span id="usuario_email" th:text="${usuarioLogado.email}"></span><br>
+                                <span id="usuario_cargo" th:text="${usuarioLogado.cargo}"></span>
+                            </div>  
                         </div>
                         <div class="col-3 nav_col">
                             <div class="sair">
-                                <a href="#" id="logout" alt="Logout">
+                                <a href="/logout" id="logout" alt="Logout">
                                     <img id="logout" src="/imagens/logout.png" alt="Ícone de logout"/>
                                     <span class="descricao_item">Logout</span>
                                 </a>
