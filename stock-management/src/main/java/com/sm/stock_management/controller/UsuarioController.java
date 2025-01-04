@@ -2,6 +2,7 @@ package com.sm.stock_management.controller;
 
 import com.sm.stock_management.model.Usuario;
 import com.sm.stock_management.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,11 +78,17 @@ public class UsuarioController {
     
     //metodo para deletar usuario
     @GetMapping("/deletar-usuario/{id}")
-    public String deletar(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+    public String deletar(@PathVariable Integer id, HttpSession session, RedirectAttributes redirectAttributes){
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
         Usuario usuario = usuarioService.buscarPorId(id);
         if(usuario == null){
             return "redirect:/listagem-usuarios"; 
-        } 
+        }
+        if (usuario.getId().equals(usuarioLogado.getId())) {
+        redirectAttributes.addFlashAttribute("mensagem", "Você não pode deletar seu próprio usuário.");
+        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
+        return "redirect:/listagem-usuarios";
+    }
         usuarioService.excluir(id);
         redirectAttributes.addFlashAttribute("mensagem", "Usuário deletado com sucesso.");
         redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");

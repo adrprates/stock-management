@@ -89,7 +89,7 @@
                         <li th:if="${#lists.isEmpty(usuarios)}" class="list-group-item bg-dark text-white text-center">
                             Nenhum resultado encontrado
                         </li>
-                        <li class="list-group-item bg-dark text-white" th:each="usuario : ${usuarios}">
+                        <li class="list-group-item bg-dark text-white" th:each="usuario, iterStat : ${usuarios}">
                             <ul>
                                 <li class="list-group-item bg-dark text-white">
                                     <strong>ID: </strong> <span th:text="${usuario.id}"></span>
@@ -104,10 +104,10 @@
                                     <strong>Cargo: </strong> <span th:text="${usuario.cargo}"></span>
                                 </li>
                             </ul>
-                            <div class="botoes">
+                            <div class="botoes" th:if="${iterStat.index != 0}">
                                 <a id="btnAtualizar" th:href="@{/atualizar-usuario/{id}(id=${usuario.id})}">Atualizar</a>
-                                <a id="btnDeletar" th:href="@{/deletar-usuario/{id}(id=${usuario.id})}" class="btn btn-danger" 
-                                onclick="return confirm('Deseja realmente excluir este usuário?');">Deletar</a>
+                                <a id="btnDeletar" th:href="@{/deletar-usuario/{id}(id=${usuario.id})}" class="btn btn-danger"
+                                   onclick="return confirm('Deseja realmente excluir este usuário?');">Deletar</a>
                             </div>
                         </li>
                     </ul>
