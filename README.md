@@ -48,3 +48,10 @@ As funcionalidades do sistema envolvem:
 - Atualização das informações de um usuário existente;
 - Exclusão de usuário;
 - Listagem de todos os usuários registrados no sistema.
+
+### Movimentação de Produto
+- Registrar entrada de produtos (inclusão no estoque);
+- Registrar saída de produtos (retirada do estoque);
+- Atualizar movimentação de produtos;
+- Listar todas as movimentações de um produto específico;
+- Visualizar detalhes das movimentações de um produto.
