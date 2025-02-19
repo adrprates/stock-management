@@ -62,7 +62,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando duas movimentações pela data e produto")
+    @DisplayName("Buscar por data e produto: listagem retornando duas movimentações pela data e produto")
     void findByDataAndProdutoCase1() {
         Produto produto = setUpProduto();
         Movimentacao movimentacao1 = new Movimentacao();
@@ -88,7 +88,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando uma movimentação pela data e produto")
+    @DisplayName("Buscar por data e produto: listagem retornando uma movimentação pela data e produto")
     void findByDataAndProdutoCase2() {
         Produto produto = setUpProduto();
         Movimentacao movimentacao1 = new Movimentacao();
@@ -114,7 +114,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem nenhuma movimentação pela data e produto")
+    @DisplayName("Buscar por data e produto: listagem nenhuma movimentação pela data e produto")
     void findByDataAndProdutoCase3() {
         Produto produto = setUpProduto();
 
@@ -124,7 +124,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando duas movimentações pelo produto")
+    @DisplayName("Buscar por produto: listagem retornando duas movimentações pelo produto")
     void findByProdutoCase1() {
         Produto produto = setUpProduto();
         Movimentacao movimentacao1 = new Movimentacao();
@@ -150,7 +150,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando uma movimentação pelo produto")
+    @DisplayName("Buscar por produto: listagem retornando uma movimentação pelo produto")
     void findByProdutoCase2() {
         Produto produto = setUpProduto();
         Movimentacao movimentacao1 = new Movimentacao();
@@ -168,7 +168,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem nenhuma movimentação pelo produto")
+    @DisplayName("Buscar por produto: lista vazia de movimentação por produto")
     void findByProdutoCase3() {
         Produto produto = setUpProduto();
 
@@ -178,7 +178,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Busca retornando a movimentação mais recente")
+    @DisplayName("Buscar última movimentação: busca retornando a movimentação mais recente")
     void findTopByOrderByDataDescHoraDescCase1() {
         Produto produto = setUpProduto();
         Movimentacao movimentacao1 = new Movimentacao();
@@ -204,7 +204,7 @@ class MovimentacaoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Busca retornando nenhuma movimentação")
+    @DisplayName("Buscar última movimentação: busca retornando nenhuma movimentação")
     void findTopByOrderByDataDescHoraDescCase2() {
 
         Movimentacao moovimentacaoEncontrada = movimentacaoRepository.findTopByOrderByDataDescHoraDesc();

@@ -38,7 +38,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Adicionando um novo produto")
+    @DisplayName("Adicionar: adicionando produto")
     void adicionarCase1() {
         Produto produto = new Produto();
         produto.setNome("Produto");
@@ -56,13 +56,13 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar adicionar um produto nulo")
+    @DisplayName("Adicionar: exceção ao tentar adicionar um produto nulo")
     void adicionarCase2() {
         assertThrows(NullPointerException.class, () -> produtoService.adicionar(null));
     }
 
     @Test
-    @DisplayName("Buscando produto pelo id")
+    @DisplayName("Buscar por id: buscando produto pelo id")
     void buscarPorIdCase1() {
         Produto produto = new Produto();
         produto.setId(1);
@@ -81,14 +81,14 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar buscar produto por id inexistente")
+    @DisplayName("Buscar por id: exceção ao tentar buscar produto por id inexistente")
     void buscarPorIdCase2() {
         when(produtoRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> produtoService.buscarPorId(1));
     }
 
     @Test
-    @DisplayName("Listagem de todos os produtos")
+    @DisplayName("Buscar todos: listagem de todos os produtos")
     void buscarTodosCase1() {
         Produto produto1 = new Produto();
         produto1.setNome("Produto 1");
@@ -112,7 +112,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Lista vazia de produtos")
+    @DisplayName("Buscar todos: lista vazia de produtos")
     void buscarTodosCase2() {
         when(produtoRepository.findAll()).thenReturn(List.of());
 
@@ -122,7 +122,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando dois produtos pelo nome")
+    @DisplayName("Buscar por nome: busca retornando dois produtos pelo nome")
     void buscarPorNomeCase1() {
         Produto produto1 = new Produto();
         produto1.setNome("Produto 1");
@@ -146,7 +146,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando nenhum produto pelo nome")
+    @DisplayName("Buscar por nome: busca retornando nenhum produto pelo nome")
     void buscarPorNomeCase2() {
         when(produtoRepository.findByNomeContaining("Produto")).thenReturn(List.of());
 
@@ -156,7 +156,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Atualizando produto")
+    @DisplayName("Atualizar: atualizando produto")
     void atualizarCase1() {
         Produto produtoAntigo = new Produto();
         produtoAntigo.setId(1);
@@ -180,7 +180,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar atualizar usuário inexistente")
+    @DisplayName("Atualizar: exceção ao tentar atualizar usuário inexistente")
     void atualizarCase2() {
         Produto produto = new Produto();
         produto.setNome("Novo");
@@ -195,7 +195,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Excluindo produto")
+    @DisplayName("Excluir: excluindo produto")
     void excluirCase1() {
         Produto produto = new Produto();
         produto.setId(1);
@@ -213,7 +213,7 @@ class ProdutoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção para tentativa de excluir produto inexistente")
+    @DisplayName("Excluir: exceção para tentativa de excluir produto inexistente")
     void excluirCase2() {
         when(produtoRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> produtoService.excluir(1));

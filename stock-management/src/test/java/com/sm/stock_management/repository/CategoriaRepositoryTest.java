@@ -29,7 +29,7 @@ class CategoriaRepositoryTest {
     }
     
     @Test
-    @DisplayName("Listagem retornando duas categorias")
+    @DisplayName("Buscar por nome que contém: listagem retornando duas categorias")
     void findByNomeContainingCase1(){
         Categoria categoria1 = new Categoria();
         categoria1.setNome("Categoria 1");
@@ -46,7 +46,7 @@ class CategoriaRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando uma categoria")
+    @DisplayName("Buscar por nome que contém: listagem retornando uma categoria")
     void findByNomeContainingCase2(){
         Categoria categoria1 = new Categoria();
         categoria1.setNome("Categoria 1");
@@ -63,7 +63,7 @@ class CategoriaRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando nenhuma categoria")
+    @DisplayName("Buscar por nome que contém: listagem retornando nenhuma categoria")
     void findByNomeContainingCase3(){
         List<Categoria> categoriasEncontradas = categoriaRepository.findByNomeContaining("Categoria");
 

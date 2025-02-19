@@ -39,7 +39,7 @@ class ProdutoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando dois produtos pelo nome")
+    @DisplayName("Buscar por nome que contém: listagem retornando dois produtos pelo nome")
     void findByNomeContainingCase1() {
         Categoria categoria = setUpCategoria();
 
@@ -66,7 +66,7 @@ class ProdutoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando um produto pelo nome")
+    @DisplayName("Buscar por nome que contém: listagem retornando um produto pelo nome")
     void findByNomeContainingCase2() {
         Produto produto1 = new Produto();
         produto1.setNome("Produto 1");
@@ -91,7 +91,7 @@ class ProdutoRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando nenhum produto pelo nome")
+    @DisplayName("Buscar por nome que contém: listagem retornando nenhum produto pelo nome")
     void findByNomeContainingCase3() {
         List<Produto> produtosEncontrados = produtoRepository.findByNomeContaining("Teste");
 

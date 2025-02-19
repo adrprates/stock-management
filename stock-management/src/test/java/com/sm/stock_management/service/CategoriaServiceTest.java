@@ -31,7 +31,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Adicionando uma nova categoria")
+    @DisplayName("Adicionar: adicionando categoria")
     void adicionarCase1() {
         Categoria categoria = new Categoria();
         categoria.setNome("Categoria");
@@ -46,13 +46,13 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar adicionar uma categoria nula")
+    @DisplayName("Adicionar: exceção ao tentar adicionar uma categoria nula")
     void adicionarCase2() {
         assertThrows(NullPointerException.class, () -> categoriaService.adicionar(null));
     }
 
     @Test
-    @DisplayName("Buscando categoria pelo id")
+    @DisplayName("Buscar por id: buscando categoria pelo id")
     void buscarPorIdCase1() {
         Categoria categoria1 = new Categoria();
         categoria1.setId(1);
@@ -68,14 +68,14 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar buscar categoria por id inexistente")
+    @DisplayName("Buscar por id: exceção ao tentar buscar categoria por id inexistente")
     void buscarPorIdCase2() {
         when(categoriaRepository.findById(99)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> categoriaService.buscarPorId(99));
     }
 
     @Test
-    @DisplayName("Listagem de todas as categorias")
+    @DisplayName("Buscar todas: listagem de todas as categorias")
     void buscarTodasCase1() {
         Categoria categoria1 = new Categoria();
         categoria1.setId(1);
@@ -95,7 +95,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Listagem vazia de categorias")
+    @DisplayName("Buscar todas: listagem vazia de categorias")
     void buscarTodasCase2() {
         when(categoriaRepository.findAll()).thenReturn(List.of());
 
@@ -105,7 +105,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando duas categorias pelo nome")
+    @DisplayName("Busca por nome: busca retornando duas categorias pelo nome")
     void buscarPorNomeCase1() {
         Categoria categoria1 = new Categoria();
         categoria1.setId(1);
@@ -125,7 +125,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando nenhuma categoria pelo nome")
+    @DisplayName("Busca por nome: busca retornando nenhuma categoria pelo nome")
     void buscarPorNomeCase2() {
         when(categoriaRepository.findByNomeContaining("ZXY")).thenReturn(List.of());
 
@@ -135,7 +135,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Atualizando categoria")
+    @DisplayName("Atualizar: atualizando categoria")
     void atualizarCase1() {
         Categoria categoriaAntiga = new Categoria();
         categoriaAntiga.setId(1);
@@ -153,7 +153,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar atualizar categoria inexistente")
+    @DisplayName("Atualizar: exceção ao tentar atualizar categoria inexistente")
     void atualizarCase2() {
         Categoria categoria = new Categoria();
         categoria.setNome("Categoria");
@@ -164,7 +164,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Excluindo categoria")
+    @DisplayName("Excluir: excluindo categoria")
     void excluirCase1() {
         Categoria categoria = new Categoria();
         categoria.setId(1);
@@ -179,7 +179,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar excluir categoria por id inexistente")
+    @DisplayName("Excluir: exceção ao tentar excluir categoria por id inexistente")
     void excluirCase2() {
         when(categoriaRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> categoriaService.excluir(1));

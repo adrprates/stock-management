@@ -31,7 +31,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Adicionando um novo usuário")
+    @DisplayName("Adicionar: adicionando usuário")
     void adicionarCase1() {
         Usuario usuario = new Usuario();
         usuario.setNome("Toninho");
@@ -49,13 +49,13 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar adicionar um usuário nulo")
+    @DisplayName("Adicionar: exceção ao tentar adicionar um usuário nulo")
     void adicionarCase2() {
         assertThrows(NullPointerException.class, () -> usuarioService.adicionar(null));
     }
 
     @Test
-    @DisplayName("Buscando usuário pelo id")
+    @DisplayName("Buscar por id: buscando usuário pelo id")
     void buscarPorIdCase1() {
         Usuario usuario = new Usuario();
         usuario.setId(1);
@@ -74,14 +74,14 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar buscar usuário por id inexistente")
+    @DisplayName("Buscar por id: exceção ao tentar buscar usuário por id inexistente")
     void buscarPorIdCase2() {
         when(usuarioRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> usuarioService.buscarPorId(1));
     }
 
     @Test
-    @DisplayName("Listagem de todos os usuários")
+    @DisplayName("Buscar todos: listagem de todos os usuários")
     void buscarTodosCase1() {
         Usuario usuario1 = new Usuario();
         usuario1.setId(1);
@@ -107,7 +107,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Listagem vazia de usuários")
+    @DisplayName("Buscar todos: listagem vazia de usuários")
     void buscarTodosCase2() {
         when(usuarioRepository.findAll()).thenReturn(List.of());
 
@@ -117,7 +117,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando dois usuários pelo nome")
+    @DisplayName("Buscar por nome: busca retornando dois usuários pelo nome")
     void buscarPorNomeCase1() {
         Usuario usuario1 = new Usuario();
         usuario1.setId(1);
@@ -143,7 +143,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando nenhum usuário pelo nome")
+    @DisplayName("Buscar por nome: busca retornando nenhum usuário pelo nome")
     void buscarPorNomeCase2() {
         when(usuarioRepository.findByNomeContaining("Jo")).thenReturn(List.of());
 
@@ -153,7 +153,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Atualizando usuário")
+    @DisplayName("Atualizar: atualizando usuário")
     void atualizarCase1() {
         Usuario usuarioAntigo = new Usuario();
         usuarioAntigo.setId(1);
@@ -177,7 +177,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar atualizar usuário inexistente")
+    @DisplayName("Atualizar: exceção ao tentar atualizar usuário inexistente")
     void atualizarCase2() {
         Usuario usuarioNovo = new Usuario();
         usuarioNovo.setNome("Toninho");
@@ -191,7 +191,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Excluindo usuário")
+    @DisplayName("Excluir: excluindo usuário")
     void excluirCase1() {
         Usuario usuario = new Usuario();
         usuario.setId(1);
@@ -209,7 +209,7 @@ class UsuarioServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar excluir usuário por id inexistente")
+    @DisplayName("Excluir: exceção ao tentar excluir usuário por id inexistente")
     void excluirCase2() {
         when(usuarioRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> usuarioService.excluir(1));

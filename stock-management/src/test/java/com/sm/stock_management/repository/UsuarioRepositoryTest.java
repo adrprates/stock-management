@@ -32,7 +32,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando dois usuários pelo nome")
+    @DisplayName("Buscar por nome que contém: listagem retornando dois usuários pelo nome")
     void findByNomeContainingCase1() {
         Usuario usuario1 = new Usuario();
         usuario1.setNome("Joao");
@@ -55,7 +55,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando um usuário pelo nome")
+    @DisplayName("Buscar por nome que contém: listagem retornando um usuário pelo nome")
     void findByNomeContainingCase2() {
         Usuario usuario1 = new Usuario();
         usuario1.setNome("Toninho");
@@ -78,7 +78,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
-    @DisplayName("Listagem retornando nenhum usuário pelo nome")
+    @DisplayName("Buscar por nome que contém: listagem retornando nenhum usuário pelo nome")
     void findByNomeContainingCase3() {
         List<Usuario> usuariosEncontrados = usuarioRepository.findByNomeContaining("Tonho");
 
@@ -86,7 +86,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
-    @DisplayName("Busca retornando e-mail existente como verdadeiro")
+    @DisplayName("E-mail existente: busca retornando e-mail existente como verdadeiro")
     void existsByEmailCase1() {
         Usuario usuario1 = new Usuario();
         usuario1.setNome("Toninho");
@@ -101,7 +101,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
-    @DisplayName("Busca retornando e-mail existente como falso")
+    @DisplayName("E-mail existente: busca retornando e-mail existente como falso")
     void existsByEmailCase2() {
         Usuario usuario1 = new Usuario();
         usuario1.setNome("Toninho");
@@ -116,7 +116,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
-    @DisplayName("Busca encontrando usuário pelo e-mail")
+    @DisplayName("Buscar por e-mail: busca encontrando usuário pelo e-mail")
     void findByEmailCase1() {
         Usuario usuario1 = new Usuario();
         usuario1.setNome("Toninho");
@@ -131,7 +131,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
-    @DisplayName("Busca não encontra usuário pelo e-mail")
+    @DisplayName("Buscar por e-mail: busca não encontra usuário pelo e-mail")
     void findByEmailCase2() {
         Usuario usuario1 = new Usuario();
         usuario1.setNome("Toninho");

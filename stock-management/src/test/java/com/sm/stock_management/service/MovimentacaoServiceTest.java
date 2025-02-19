@@ -55,7 +55,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Adicionando movimentação")
+    @DisplayName("Adicionar: adicionando movimentação")
     void adicionarCase1() {
         Movimentacao movimentacao = new Movimentacao();
         movimentacao.setProduto(setUpProduto());
@@ -74,13 +74,13 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar adicionar uma movimentação nula")
+    @DisplayName("Adicionar: exceção ao tentar adicionar uma movimentação nula")
     void adicionarCase2() {
         assertThrows(NullPointerException.class, () -> movimentacaoService.adicionar(null));
     }
 
     @Test
-    @DisplayName("Buscando movimentação pelo id")
+    @DisplayName("Buscar por id: buscando movimentação pelo id")
     void buscarPorIdCase1() {
         Movimentacao movimentacao = new Movimentacao();
         movimentacao.setId(1);
@@ -100,14 +100,14 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar buscar movimentação por id inexistente")
+    @DisplayName("Buscar por id: exceção ao tentar buscar movimentação por id inexistente")
     void buscarPorIdCase2() {
         when(movimentacaoRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> movimentacaoService.buscarPorId(1));
     }
 
     @Test
-    @DisplayName("Listagem de todas as movimentações de um produto")
+    @DisplayName("Buscar todas: listagem de todas as movimentações de um produto")
     void buscarTodasCase1() {
         Produto produto = setUpProduto();
 
@@ -135,7 +135,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Lista vazia de movimentações")
+    @DisplayName("Buscar todas: lista vazia de movimentações")
     void buscarTodasCase2() {
         Produto produto = setUpProduto();
 
@@ -147,7 +147,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando duas movimentações pela data e produto")
+    @DisplayName("Buscar por data e produto: duas movimentações pela data e produto")
     void buscarPorDataCase1() {
         LocalDate data = LocalDate.of(2020, 1, 1);
 
@@ -177,7 +177,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Busca utilizando data de movimentação inexistente")
+    @DisplayName("Busca por data e produto: data de movimentação inexistente")
     void buscarPorDataCase2() {
         LocalDate data = LocalDate.of(2020, 1, 1);
 
@@ -191,7 +191,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Busca retornando a movimentação mais recente")
+    @DisplayName("Obter última movimentação: mais recente")
     void obterUltimaMovimentacaoCase1() {
         Movimentacao movimentacao1 = new Movimentacao();
         movimentacao1.setProduto(setUpProduto());
@@ -215,7 +215,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Busca não havendo movimentações cadatradas")
+    @DisplayName("Obter última movimentação: não havendo movimentações cadatradas")
     void obterUltimaMovimentacaoCase2() {
         when(movimentacaoRepository.findTopByOrderByDataDescHoraDesc()).thenReturn(null);
 
@@ -225,7 +225,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Lógica aplicando uma movimentação de inclusão")
+    @DisplayName("Aplicar movimentação: movimentação de inclusão")
     void aplicarMovimentacaoCase1() {
         Produto produto = setUpProduto();
 
@@ -244,7 +244,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Lógica aplicando uma movimentação de retirada")
+    @DisplayName("Aplicar movimentação: movimentação de retirada")
     void aplicarMovimentacaoCase2() {
         Produto produto = setUpProduto();
 
@@ -263,7 +263,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Lógica para uma movimentação de retirada com quantidade insuficiente em estoque")
+    @DisplayName("Aplicar movimentação: movimentação de retirada com quantidade insuficiente em estoque")
     void aplicarMovimentacaoCase3() {
         Produto produto = setUpProduto();
 
@@ -292,7 +292,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Removendo movimentação do tipo inclusão")
+    @DisplayName("Remover movimentação: movimentação de inclusão")
     void removerMovimentacaoCase1() {
         Produto produto = setUpProduto();
 
@@ -326,7 +326,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Removendo movimentação do tipo retirada")
+    @DisplayName("Remover movimentação: movimentação de retirada")
     void removerMovimentacaoCase2() {
         Produto produto = setUpProduto();
 
@@ -360,7 +360,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Atualizando movimentação")
+    @DisplayName("Atualizar: atualizando movimentação")
     void atualizarCase1() {
         Produto produto = setUpProduto();
 
@@ -393,7 +393,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção ao tentar atualizar movimentação inexistente")
+    @DisplayName("Atualizar: exceção ao tentar atualizar movimentação inexistente")
     void atualizarCase2() {
         Produto produto = setUpProduto();
 
@@ -410,7 +410,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Excluindo movimentação do tipo inclusão")
+    @DisplayName("Excluir: excluindo movimentação do tipo inclusão")
     void excluirCase1() {
         Produto produto = setUpProduto();
 
@@ -439,7 +439,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Excluindo movimentação do tipo retirada")
+    @DisplayName("Excluir: excluindo movimentação do tipo retirada")
     void excluirCase2() {
         Produto produto = setUpProduto();
 
@@ -468,7 +468,7 @@ class MovimentacaoServiceTest {
     }
 
     @Test
-    @DisplayName("Exceção para tentativa de excluir movimentação inexistente")
+    @DisplayName("Excluir: exceção para tentativa de excluir movimentação inexistente")
     void excluirCase3() {
         when(movimentacaoRepository.findById(1)).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> movimentacaoService.excluir(1));
