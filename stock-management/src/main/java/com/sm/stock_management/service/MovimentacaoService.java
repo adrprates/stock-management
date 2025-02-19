@@ -76,6 +76,7 @@ public class MovimentacaoService {
     
     public Movimentacao atualizar(Integer id, Movimentacao movimentacao){
         Movimentacao movimentacaoEncontrada = buscarPorId(id);
+
         
         movimentacaoEncontrada.setQuantidade(movimentacao.getQuantidade());
         movimentacaoEncontrada.setTipo(movimentacao.getTipo());

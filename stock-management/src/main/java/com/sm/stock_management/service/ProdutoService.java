@@ -52,6 +52,7 @@ public class ProdutoService {
         Produto produtoEncontrado = buscarPorId(id);
         
         produtoRepository.deleteById(produtoEncontrado.getId());
+
     }
     
 }

@@ -68,7 +68,7 @@ class MovimentacaoRepositoryTest {
         Movimentacao movimentacao1 = new Movimentacao();
         movimentacao1.setProduto(produto);
         movimentacao1.setQuantidade(10);
-        movimentacao1.setTipo("Inclusão");
+        movimentacao1.setTipo("Inclusao");
         movimentacao1.setData(setUpData());
         movimentacao1.setHora(setUpHora());
         createMovimentacao(movimentacao1);
@@ -94,7 +94,7 @@ class MovimentacaoRepositoryTest {
         Movimentacao movimentacao1 = new Movimentacao();
         movimentacao1.setProduto(produto);
         movimentacao1.setQuantidade(10);
-        movimentacao1.setTipo("Inclusão");
+        movimentacao1.setTipo("Inclusao");
         movimentacao1.setData(setUpData());
         movimentacao1.setHora(setUpHora());
         createMovimentacao(movimentacao1);
@@ -130,7 +130,7 @@ class MovimentacaoRepositoryTest {
         Movimentacao movimentacao1 = new Movimentacao();
         movimentacao1.setProduto(produto);
         movimentacao1.setQuantidade(10);
-        movimentacao1.setTipo("Inclusão");
+        movimentacao1.setTipo("Inclusao");
         movimentacao1.setData(setUpData());
         movimentacao1.setHora(setUpHora());
         createMovimentacao(movimentacao1);
@@ -156,7 +156,7 @@ class MovimentacaoRepositoryTest {
         Movimentacao movimentacao1 = new Movimentacao();
         movimentacao1.setProduto(produto);
         movimentacao1.setQuantidade(10);
-        movimentacao1.setTipo("Inclusão");
+        movimentacao1.setTipo("Inclusao");
         movimentacao1.setData(setUpData());
         movimentacao1.setHora(setUpHora());
         createMovimentacao(movimentacao1);
@@ -184,7 +184,7 @@ class MovimentacaoRepositoryTest {
         Movimentacao movimentacao1 = new Movimentacao();
         movimentacao1.setProduto(produto);
         movimentacao1.setQuantidade(10);
-        movimentacao1.setTipo("Inclusão");
+        movimentacao1.setTipo("Inclusao");
         movimentacao1.setData(setUpData());
         movimentacao1.setHora(setUpHora());
         createMovimentacao(movimentacao1);
