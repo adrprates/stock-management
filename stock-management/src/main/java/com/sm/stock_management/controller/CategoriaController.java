@@ -35,16 +35,22 @@ public class CategoriaController {
     //atualizacao de uma categoria existente
     @PostMapping("/salvar-categoria")
     public String processarFormulario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Categoria categoria) {
-        if(categoria.getId() != null){
-            categoriaService.atualizar(categoria.getId(), categoria);
-            redirectAttributes.addFlashAttribute("mensagem", "Categoria atualizada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
-        } else {
-            categoriaService.adicionar(categoria);
-            redirectAttributes.addFlashAttribute("mensagem", "Categoria cadastrada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+        try{
+            if(categoria.getId() != null){
+                categoriaService.atualizar(categoria.getId(), categoria);
+                redirectAttributes.addFlashAttribute("mensagem", "Categoria atualizada com sucesso!");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+            } else {
+                categoriaService.adicionar(categoria);
+                redirectAttributes.addFlashAttribute("mensagem", "Categoria cadastrada com sucesso!");
+                redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+            }
+            model.addAttribute("categoria", new Categoria());
+        } catch (RuntimeException e){
+            redirectAttributes.addFlashAttribute("mensagem", "Erro ao salvar categoria: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
         }
-        model.addAttribute("categoria", new Categoria());
+
         return "redirect:/listagem-categorias";
     }
 

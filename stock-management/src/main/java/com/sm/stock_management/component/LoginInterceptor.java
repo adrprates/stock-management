@@ -24,14 +24,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     static {
         List<String> gerentePermissoes = Arrays.asList(
-                "/atualizar-categoria", "/atualizar-produto", "/atualizar-usuario",
-                "/cadastro-categoria", "/cadastro-produto", "/cadastro-usuario",
-                "/listagem-categorias", "/listagem-movimnetacao-produto", "/listagem-produtos", "/listagem-usuarios",
-                "/movimentacao-produto"
+                "/atualizar-categoria", "/atualizar-produto", "/atualizar-usuario", "/salvar-produto",
+                "/cadastro-categoria", "/cadastro-produto", "/cadastro-usuario", "/deletar-categoria", "/deletar-produto",
+                "/listagem-categorias", "/listagem-movimentacao-produto", "/listagem-produtos", "/listagem-usuarios",
+                "/movimentacao-produto", "/salvar-categoria", "/salvar-usuario", "/deletar-usuario"
         );
 
         List<String> estoquistaPermissoes = new ArrayList<>(gerentePermissoes);
-        estoquistaPermissoes.removeAll(Arrays.asList("/atualizar-usuario", "/cadastro-usuario", "/listagem-usuarios"));
+        estoquistaPermissoes.removeAll(Arrays.asList("/atualizar-usuario", "/cadastro-usuario", "/listagem-usuarios", "/salvar-usuario", "/deletar-usuario"));
 
         List<String> compradorVendedorPermissoes = Arrays.asList("/listagem-produtos");
 
