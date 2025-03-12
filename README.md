@@ -1,6 +1,6 @@
 # Stock Management
 
-> Status do projeto: Em desenvolvimento ⚠️
+> Status do projeto: Finalizado ✅
 
 <br>
 
