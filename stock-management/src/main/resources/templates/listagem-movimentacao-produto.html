@@ -90,13 +90,13 @@
                         <li th:if="${#lists.isEmpty(movimentacoes)}" class="list-group-item bg-dark text-white text-center">
                             Nenhum resultado encontrado
                         </li>
-                        <li class="list-group-item bg-dark text-white" th:each="movimentacao : ${movimentacoes}">
+                        <li th:each="movimentacao : ${movimentacoes}" class="list-group-item bg-dark text-white">
                             <ul>
                                 <li class="list-group-item bg-dark text-white">
                                     <strong>ID: </strong> <span th:text="${movimentacao.id}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
-                                    <strong>Produto: </strong> <span th:text="${movimentacao.produto.id} + ' - ' + ${movimentacao.produto.nome}"></span>
+                                    <strong>Produto: </strong> <span th:text="${movimentacao.produto.id + ' - ' + movimentacao.produto.nome}"></span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <strong>Quantidade: </strong> <span th:text="${movimentacao.quantidade}"></span>
@@ -114,9 +114,13 @@
                                 </li>
                             </ul>
                             <div class="botoes">
-                                <a id="btnDeletar" th:href="@{/deletar-movimentacao/{id}(id=${movimentacao.id})}" class="btn btn-danger" 
-                                onclick="return confirm('Deseja realmente excluir esta movimentação?');"
-                                th:if="${movimentacao.id == ultimaMovimentacao.id}">Deletar</a>
+                                <a id="btnDeletar"
+                                   th:href="@{/deletar-movimentacao/{id}(id=${movimentacao.id})}"
+                                   class="btn btn-danger"
+                                   onclick="return confirm('Deseja realmente excluir esta movimentação?');"
+                                   th:if="${ultimaMovimentacao != null && movimentacao.id == ultimaMovimentacao.id}">
+                                   Deletar
+                                </a>
                             </div>
                         </li>
                     </ul>                    

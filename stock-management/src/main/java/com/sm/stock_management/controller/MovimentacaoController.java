@@ -92,7 +92,7 @@ public class MovimentacaoController {
             movimentacoes = movimentacaoService.buscarTodas(produto);
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate dataAtual = LocalDate.parse(data, formatter);            
+            LocalDate dataAtual = LocalDate.parse(data, formatter);
             movimentacoes = movimentacaoService.buscarPorData(dataAtual, produto);
         }
 
@@ -121,15 +121,23 @@ public class MovimentacaoController {
     
     //metodo para deletar movimentacao
     @GetMapping("/deletar-movimentacao/{id}")
-    public String deletar(@PathVariable Integer id, RedirectAttributes redirectAttributes){
-        Movimentacao movimentacao = movimentacaoService.buscarPorId(id);
-        int produtoId = movimentacao.getProduto().getId();
-        if(movimentacao == null){
-            return "redirect:/listagem-movimentacao-produto/" + produtoId; 
-        } 
-        movimentacaoService.excluir(id);
-        redirectAttributes.addFlashAttribute("mensagem", "Movimentação deletada com sucesso!");
-        redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
-        return "redirect:/listagem-movimentacao-produto/" + produtoId;   
+    public String deletar(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        try {
+            Movimentacao movimentacao = movimentacaoService.buscarPorId(id);
+            int produtoId = movimentacao.getProduto().getId();
+
+            movimentacaoService.excluir(id);
+
+            redirectAttributes.addFlashAttribute("ultimaMovimentacao", movimentacao);
+            redirectAttributes.addFlashAttribute("mensagem", "Movimentação deletada com sucesso!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-success");
+
+            return "redirect:/listagem-movimentacao-produto/" + produtoId;
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("mensagem", "Erro: movimentação não encontrada!");
+            redirectAttributes.addFlashAttribute("tipoMensagem", "alert-danger");
+            return "redirect:/listagem-produtos"; // Ou outro caminho adequado
+        }
     }
+
 }

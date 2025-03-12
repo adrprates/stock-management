@@ -110,12 +110,8 @@ class ProdutoControllerTest {
     @DisplayName("Cadastrar: erro ao salvar um novo produto")
     void processarFormularioCase2() throws Exception {
         Produto produto = new Produto();
-        produto.setNome("Produto");
-        produto.setCategoria(setUpCategoria());
-        produto.setPreco(10.00);
-        produto.setDescricao("Melhor produto de todos");
 
-        when(produtoService.adicionar(produto)).thenReturn(produto);
+        when(produtoService.adicionar(any(Produto.class))).thenReturn(null);
 
         mockMvc.perform(post("/salvar-produto")
                         .session(session)

@@ -125,7 +125,6 @@ class CategoriaControllerTest {
                 .andExpect(flash().attribute("tipoMensagem", "alert-success"));
 
     }
-
     @Test
     @DisplayName("Atualizar: erro ao salvar categoria atualizada")
     void processarFormularioCase4() throws Exception {
