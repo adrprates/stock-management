@@ -1,4 +1,4 @@
-CREATE stock_management;
+CREATE DATABASE stock_management;
 USE stock_management;
 
 INSERT INTO	usuarios VALUES
