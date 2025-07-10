@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head('Listar Saídas de Estoque')"></th:block>
+    <style>
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.6;
+            cursor: default;
+            text-decoration: none;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">ID Bebida</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Volume</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">ID Cliente</th>
+        <th scope="col">Nome Cliente</th>
+        <th scope="col">CPF Cliente</th>
+        <th scope="col">Data de Saída</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tbody>
+    <tr th:each="saida : ${listSaida}">
+        <td th:text="${saida.id}"></td>
+        <td th:text="${saida.idBebida}"></td>
+        <td th:text="${saida.nome}"></td>
+        <td th:text="${saida.tipo}"></td>
+        <td th:text="${saida.volume}"></td>
+        <td th:text="${saida.quantidade}"></td>
+        <td th:text="${saida.idCliente}"></td>
+        <td th:text="${saida.nomeCliente}"></td>
+        <td th:text="${saida.cpfCliente}"></td>
+        <td th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy HH:mm')}"></td>
+        <td>
+            <a class="btn btn-danger" 
+                th:href="@{/saidas-estoque/deletar/{id}(id=${saida.id})}"
+                th:classappend="${!saida.ultimaMovimentacao} ? ' disabled-link' : ''">
+                Deletar
+            </a>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+<div class="row">
+</div>
+
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>

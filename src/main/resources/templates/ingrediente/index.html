@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head('Listar Ingredientes')"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Unidade de Medida</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ingrediente : ${listIngredientes}">
+        <td th:text="${ingrediente.id}"></td>
+        <td th:text="${ingrediente.nome}"></td>
+        <td th:text="${ingrediente.unidadeMedida}"></td>
+        <td>
+            <a th:href="@{/ingrediente/editar/{id}(id=${ingrediente.id})}">Editar</a>
+        </td>
+        <td>
+            <a th:href="@{/ingrediente/deletar/{id}(id=${ingrediente.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    <a class="btn btn-primary" th:href="@{/ingrediente/criar}">Cadastrar Ingrediente</a>
+</div>
+
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>

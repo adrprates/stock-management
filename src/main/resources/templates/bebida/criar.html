@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/../fragments/head :: head('Cadastrar Bebida')}"></th:block>
+<body>
+<th:block th:replace="~{/../fragments/head :: header}"></th:block>
+<div class="container">
+    <h1>Cadastrar Bebida</h1>
+    <form action="#" th:action="@{/bebida/salvar}" th:object="${bebida}" method="POST">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Nome:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{nome}" class="form-control" id="nome" name="nome" placeholder="Digite o nome da bebida">
+                <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome inválido</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="volume" class="col-sm-2 col-form-label">Volume:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{volume}" class="form-control" id="volume" name="volume" placeholder="Digite o volume da bebida (mL ou L)">
+                <p th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">Volume inválido</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="type" class="col-sm-2 col-form-label">Tipo:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{tipo}" class="form-control" id="tipo" name="tipo" placeholder="Digite o tipo da bebida">
+                <p th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}">Tipo inválido</p>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info col-2">Cadastrar Bebida</button>
+    </form>
+</div>
+<th:block th:replace="~{/../fragments/footer :: footer}"></th:block>
+</body>
+</html>

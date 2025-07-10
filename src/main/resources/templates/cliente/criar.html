@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/../fragments/head :: head('Cadastrar Cliente')}"></th:block>
+<body>
+<th:block th:replace="~{/../fragments/head :: header}"></th:block>
+<div class="container">
+    <h1>Cadastrar Cliente</h1>
+    <form action="#" th:action="@{/cliente/salvar}" th:object="${cliente}" method="POST">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Nome:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{nome}" class="form-control" id="nome" name="nome" placeholder="Digite o nome do cliente">
+                <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome inválido</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="cpf" class="col-sm-2 col-form-label">CPF:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{cpf}" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF do cliente">
+                <p th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}">CPF inválido</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="telefone" class="col-sm-2 col-form-label">Telefone:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{telefone}" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone do cliente">
+                <p th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}">Telefone inválido</p>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info col-2">Cadastrar Cliente</button>
+    </form>
+</div>
+<th:block th:replace="~{/../fragments/footer :: footer}"></th:block>
+</body>
+</html>

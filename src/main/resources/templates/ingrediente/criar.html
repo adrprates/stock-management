@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/../fragments/head :: head('Cadastrar Ingrediente')}"></th:block>
+<body>
+<th:block th:replace="~{/../fragments/head :: header}"></th:block>
+<div class="container">
+    <h1>Cadastrar Ingrediente</h1>
+    <form action="#" th:action="@{/ingrediente/salvar}" th:object="${ingrediente}" method="POST">
+        <div class="form-group row">
+            <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{nome}" class="form-control" id="nome" name="nome" placeholder="Digite o nome do ingrediente">
+                <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome inválido</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="unidadeMedida" class="col-sm-2 col-form-label">Unidade de Medida:</label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{unidadeMedida}" class="form-control" id="unidadeMedida" name="unidadeMedida" placeholder="Digite a unidade de medida do ingrediente">
+                <p th:if="${#fields.hasErrors('unidadeMedida')}" th:errors="*{unidadeMedida}">Unidade de medida inválida</p>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info col-2">Cadastrar Ingrediente</button>
+    </form>
+</div>
+<th:block th:replace="~{/../fragments/footer :: footer}"></th:block>
+</body>
+</html>

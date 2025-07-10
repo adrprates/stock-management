@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/head :: head('Cadastrar Entrada de Estoque')"></th:block>
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+<div class="container">
+    <h1>Cadastrar Entrada de Estoque</h1>
+    <form action="#" th:action="@{/entradas-estoque/salvar}" th:object="${entradaEstoque}" method="POST">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Bebida:</label>
+            <div class="col-sm-10">
+                <select th:field="*{bebida}" class="form-control">
+                    <option value="" disabled selected>Selecione uma bebida</option>
+                    <option th:each="bebida : ${bebidas}"
+                            th:value="${bebida.id}"
+                            th:text="${bebida.nome}">
+                    </option>
+                </select>
+                <p th:if="${#fields.hasErrors('bebida')}" th:errors="*{bebida}">Bebida inválida</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Quantidade:</label>
+            <div class="col-sm-10">
+                <input type="number" th:field="*{quantidade}" class="form-control" placeholder="Digite a quantidade">
+                <p th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}">Quantidade inválida</p>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-info col-2">Cadastrar Entrada</button>
+    </form>
+</div>
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>

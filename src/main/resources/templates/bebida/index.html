@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head('Listar Bebida')"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Volume</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Deletar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bebida : ${listBebidas}">
+        <td th:text="${bebida.id}"></td>
+        <td th:text="${bebida.nome}"></td>
+        <td th:text="${bebida.volume}"></td>
+        <td th:text="${bebida.tipo}"></td>
+        <td>
+            <a th:href="@{/bebida/editar/{id}(id=${bebida.id})}">Editar</a>
+        </td>
+        <td>
+            <a th:href="@{/bebida/deletar/{id}(id=${bebida.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    <a class="btn btn-primary" th:href="@{/bebida/criar}">Cadastrar Bebida</a>
+</div>
+
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>

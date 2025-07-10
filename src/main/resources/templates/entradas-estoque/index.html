@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head('Listar Entradas de Estoque')"></th:block>
+    <style>
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.6;
+            cursor: default;
+            text-decoration: none;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">ID Bebida</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Volume</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Data de Entrada</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entrada : ${listEntrada}">
+        <td th:text="${entrada.id}"></td>
+        <td th:text="${entrada.idBebida}"></td>
+        <td th:text="${entrada.nome}"></td>
+        <td th:text="${entrada.tipo}"></td>
+        <td th:text="${entrada.volume}"></td>
+        <td th:text="${entrada.quantidade}"></td>
+        <td th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy HH:mm')}"></td>
+        <td>
+            <a class="btn btn-danger" 
+                th:href="@{/entradas-estoque/deletar/{id}(id=${entrada.id})}"
+                th:classappend="${!entrada.ultimaMovimentacao} ? ' disabled-link' : ''">
+                Deletar
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>
