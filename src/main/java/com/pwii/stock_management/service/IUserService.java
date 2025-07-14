@@ -6,7 +6,7 @@ import com.pwii.stock_management.model.Usuario;
 import java.util.List;
 
 public interface IUserService {
-    public Long saveUser(Usuario usuario);
+    Long saveUser(Usuario usuario);
     List<Usuario> getAllUsuarios();
     Usuario getUsuarioById(Long id);
     void deletarUsuarioById(Long id);

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments/head :: head('Criar Receita de Bebida')"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Criar Receita de Bebida</h2>
+
+  <div th:if="${ingredientes == null or #lists.isEmpty(ingredientes) or bebidas == null or #lists.isEmpty(bebidas)}"
+       class="alert alert-warning">
+    Cadastre pelo menos uma <strong>bebida</strong> e um <strong>ingrediente</strong> antes de criar uma receita.
+  </div>
+
+  <form th:action="@{/receitas-bebidas/salvar}" th:object="${form}" method="post">
+    <div class="mb-3">
+      <label for="idBebida" class="form-label">Bebida</label>
+      <select class="form-select" id="idBebida" th:field="*{idBebida}"
+              th:disabled="${#lists.isEmpty(bebidas)}" required>
+        <option value="" disabled selected>Selecione a bebida</option>
+        <option th:each="bebida : ${bebidas}" th:value="${bebida.id}" th:text="${bebida.nome}"></option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="qtd" class="form-label">
+        Quantidade de Ingredientes (máx: <span th:text="${ingredientes.size()}">0</span>)
+      </label>
+      <input type="number" id="qtd" name="qtd" class="form-control" min="1"
+             th:attr="max=${ingredientes.size()}"
+             th:disabled="${#lists.isEmpty(bebidas) or #lists.isEmpty(ingredientes)}" required />
+    </div>
+
+    <div th:if="${!#lists.isEmpty(ingredientes) and !#lists.isEmpty(bebidas)}">
+      <button type="button" class="btn btn-secondary mb-3" onclick="gerarCamposIngredientes()">Gerar Campos</button>
+    </div>
+
+    <div id="ingredientesContainer"></div>
+
+    <button type="submit" class="btn btn-primary mt-3"
+            th:disabled="${#lists.isEmpty(ingredientes) or #lists.isEmpty(bebidas)}">
+      Salvar Receita
+    </button>
+  </form>
+</div>
+
+<th:block th:replace="fragments/footer :: footer"></th:block>
+
+<script th:inline="javascript">
+  const ingredientes = /*[[${ingredientes}]]*/ [];
+
+  function gerarCamposIngredientes() {
+    const qtd = parseInt(document.getElementById('qtd').value);
+    const container = document.getElementById('ingredientesContainer');
+    container.innerHTML = '';
+
+    if (isNaN(qtd) || qtd < 1 || qtd > ingredientes.length) {
+      alert("Informe uma quantidade válida de ingredientes.");
+      return;
+    }
+
+    for (let i = 0; i < qtd; i++) {
+      const div = document.createElement("div");
+      div.className = "border p-3 mb-3 rounded";
+
+      div.innerHTML = `
+                <h5>Ingrediente ${i + 1}</h5>
+                <div class="mb-2">
+                    <label class="form-label">Ingrediente</label>
+                    <select name="ingredientes[${i}].idIngrediente" class="form-select" onchange="verificarRepetidos(this)" required>
+                        <option value="" disabled selected>Selecione</option>
+                        ${ingredientes.map(ing => `<option value="${ing.id}">${ing.nome}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Quantidade</label>
+                    <input type="number" name="ingredientes[${i}].quantidade" class="form-control" step="any" min="0" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Unidade de Medida</label>
+                    <input type="text" name="ingredientes[${i}].unidadeMedida" class="form-control" required />
+                </div>
+            `;
+      container.appendChild(div);
+    }
+  }
+
+  function verificarRepetidos(select) {
+    const selectedValue = select.value;
+    if (!selectedValue) return;
+
+    const selects = document.querySelectorAll('select[name$=".idIngrediente"]');
+    for (const s of selects) {
+      if (s !== select && s.value === selectedValue) {
+        alert("Este ingrediente já foi selecionado!");
+        select.value = '';
+        break;
+      }
+    }
+  }
+</script>
+</body>
+</html>

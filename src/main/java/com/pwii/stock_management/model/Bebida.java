@@ -19,17 +19,22 @@ public class Bebida {
 
     @Column(name = "nome", nullable = false)
     @NotBlank
-    @Size(min = 3, max = 100)
+    @Size(max = 100)
     private String nome;
 
     @Column(name = "volume")
     @NotBlank
-    @Size(min = 3, max = 100)
+    @Size(max = 100)
     private String volume;
+
+    @Column(name = "unidade_volume")
+    @NotBlank
+    @Size(max = 10)
+    private String unidadeVolume;
 
     @Column(name = "tipo")
     @NotBlank
-    @Size(min = 3, max = 100)
+    @Size(max = 100)
     private String tipo;
 
     @OneToMany(mappedBy = "bebida", cascade = CascadeType.ALL)

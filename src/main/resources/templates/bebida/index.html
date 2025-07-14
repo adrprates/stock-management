@@ -12,6 +12,7 @@
         <th scope="col">ID</th>
         <th scope="col">Nome</th>
         <th scope="col">Volume</th>
+        <th scope="col">Unidade de Medida</th>
         <th scope="col">Tipo</th>
         <th scope="col">Editar</th>
         <th scope="col">Deletar</th>
@@ -22,6 +23,7 @@
         <td th:text="${bebida.id}"></td>
         <td th:text="${bebida.nome}"></td>
         <td th:text="${bebida.volume}"></td>
+        <td th:text="${bebida.unidadeVolume}"></td>
         <td th:text="${bebida.tipo}"></td>
         <td>
             <a th:href="@{/bebida/editar/{id}(id=${bebida.id})}">Editar</a>

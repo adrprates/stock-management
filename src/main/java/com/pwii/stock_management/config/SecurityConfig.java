@@ -34,7 +34,8 @@ public class SecurityConfig {
                                 "/cliente/**",
                                 "/ingrediente/**",
                                 "/entradas-estoque/**",
-                                "/saidas-estoque/**"
+                                "/saidas-estoque/**",
+                                "/receitas-bebidas/**"
                         ).hasAnyAuthority("Gerente", "Estoquista")
                         .requestMatchers("/usuario/**").hasAuthority("Gerente")
                         .anyRequest().authenticated()

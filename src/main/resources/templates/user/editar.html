@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/head :: head('Editar Usuário')"></th:block>
+    <th:block th:replace="~{fragments/head :: head('Editar Usuário')}"></th:block>
 </head>
 <body>
-<th:block th:replace="fragments/head :: header"></th:block>
+<th:block th:replace="~{fragments/head :: header}"></th:block>
 
 <div class="container mt-4">
     <h2>Editar Cargo do Usuário</h2>
@@ -21,9 +21,9 @@
         <div class="form-group mb-3">
             <label for="role">Cargo:</label>
             <select class="form-control" id="role" name="roles" th:field="*{roles}">
-                <option th:each="role : ${roles}" 
-                        th:value="${role}" 
-                        th:text="${role}" 
+                <option th:each="role : ${roles}"
+                        th:value="${role}"
+                        th:text="${role}"
                         th:selected="${usuario.roles[0] == role}">
                 </option>
             </select>
@@ -33,6 +33,6 @@
     </form>
 </div>
 
-<th:block th:replace="fragments/footer :: footer"></th:block>
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
 </html>

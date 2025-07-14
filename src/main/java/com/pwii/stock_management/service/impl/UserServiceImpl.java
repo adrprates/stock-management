@@ -1,6 +1,5 @@
 package com.pwii.stock_management.service.impl;
 
-import com.pwii.stock_management.model.Cliente;
 import com.pwii.stock_management.model.Usuario;
 import com.pwii.stock_management.repository.UsuarioRepository;
 import com.pwii.stock_management.service.IUserService;

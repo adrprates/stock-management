@@ -10,5 +10,5 @@ import java.util.List;
 public interface EstoqueService {
     List<EstoqueDto> getAllEstoque();
     Estoque salvarEstoque(Long idBebida, int delta, String descricao);
-    public UltimaMovimentacaoDto getUltimaMovimentacao(Long idBebida);
+    UltimaMovimentacaoDto getUltimaMovimentacao(Long idBebida);
 }

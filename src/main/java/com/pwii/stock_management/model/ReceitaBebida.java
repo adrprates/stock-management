@@ -9,14 +9,21 @@ import lombok.Data;
 public class ReceitaBebida {
 
     @EmbeddedId
-    private ReceitaBebidaId id = new ReceitaBebidaId();
+    private ReceitaBebidaId id;
 
-    @ManyToOne @MapsId("idBebida")
+    @Column(name = "quantidade", nullable = false)
+    private float quantidade;
+
+    @Column(name = "unidade_medida", nullable = false)
+    private String unidadeMedida;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idBebida")
+    @JoinColumn(name = "bebida_id", nullable = false)
     private Bebida bebida;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idIngrediente")
+    @JoinColumn(name = "ingrediente_id", nullable = false)
     private Ingrediente ingrediente;
-
-    private Double quantidade;
 }

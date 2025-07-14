@@ -69,6 +69,16 @@
           </div>
         </li>
 
+        <li sec:authorize="hasAnyAuthority('Gerente','Estoquista')" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navReceitasBebidas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Receitas Bebidas
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navReceitasBebidas">
+            <a class="dropdown-item" th:href="@{/receitas-bebidas}">Listar</a>
+            <a class="dropdown-item" th:href="@{/receitas-bebidas/criar}">Cadastrar</a>
+          </div>
+        </li>
+
 
         <li sec:authorize="hasAnyAuthority('Gerente','Estoquista')" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navEntradaEstoque" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
